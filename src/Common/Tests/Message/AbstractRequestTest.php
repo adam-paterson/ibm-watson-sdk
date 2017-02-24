@@ -31,6 +31,14 @@ class AbstractRequestTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('01234', $this->request->getPassword());
     }
 
+    public function testGetData()
+    {
+        $data = ['username' => 'adam', 'password' => '01234'];
+        $this->request->initialize($data);
+
+        $this->assertSame($data, $this->request->getData());
+    }
+
     /**
      * @expectedException \IBM\Watson\Common\Exception\RuntimeException
      * @expectedExceptionMessage Request cannot be modified after it has been sent!
@@ -77,10 +85,6 @@ class AbstractRequestTest extends \PHPUnit_Framework_TestCase
 
 class AbstractRequestTest_MockAbstractRequest extends AbstractRequest
 {
-    public function getData()
-    {
-    }
-
     public function sendData($data)
     {
         $this->response = m::mock('\IBM\Watson\Common\Message\AbstractResponse');

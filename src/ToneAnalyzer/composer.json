@@ -1,11 +1,12 @@
 {
-    "name": "adam-paterson/ibm-watson-sdk",
+    "name": "adam-paterson/watson-tone-analyzer",
     "type": "library",
     "description": "",
     "keywords": [
         "ibm",
         "watson",
-        "machine learning"
+        "machine learning",
+        "tone analyzer"
     ],
     "homepage": "https://github.com/adam-paterson/ibm-watson-sdk",
     "license": "MIT",
@@ -23,28 +24,16 @@
     ],
     "require": {
         "php": "~5.6|~7.0",
-        "guzzlehttp/guzzle": "^6.2",
-        "symfony/http-foundation": "^3.2"
-    },
-    "replace": {
-        "adam-paterson/watson-common": "self.version",
-        "adam-paterson/watson-tone-analyzer": "self.version"
+        "adam-paterson/watson-common": "dev-develop"
     },
     "require-dev": {
-        "guzzle/plugin-mock": "^3.9",
-        "mockery/mockery": "^0.9.8",
-        "phpunit/phpunit": "~4.0||~5.0",
+        "phpunit/phpunit" : "~4.0||~5.0",
         "squizlabs/php_codesniffer": "^2.3"
     },
     "autoload": {
         "psr-4": {
-            "IBM\\Watson\\": "src"
+            "IBM\\Watson\\ToneAnalyzer": ""
         }
-    },
-    "scripts": {
-        "test": "phpunit",
-        "check-style": "phpcs -p --standard=PSR2 --ignore=*/Tests/* --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src",
-        "fix-style": "phpcbf -p --standard=PSR2 --ignore=*/Tests/* --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src"
     },
     "extra": {
         "branch-alias": {

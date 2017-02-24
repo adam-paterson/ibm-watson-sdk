@@ -98,11 +98,12 @@ abstract class AbstractRequest implements RequestInterface
      * Get a parameter
      *
      * @param string $key The parameter key
+     * @param mixed $default Default value
      * @return mixed
      */
-    public function getParameter($key)
+    public function getParameter($key, $default = null)
     {
-        return $this->parameters->get($key);
+        return $this->parameters->get($key, $default);
     }
 
     /**
@@ -147,6 +148,19 @@ abstract class AbstractRequest implements RequestInterface
     public function setPassword($value)
     {
         return $this->setParameter('password', $value);
+    }
+
+    /**
+     * Get request data
+     *
+     * @return array
+     */
+    public function getData()
+    {
+        return [
+            'username'  => $this->getUsername(),
+            'password'  => $this->getPassword(),
+        ];
     }
 
     /**
