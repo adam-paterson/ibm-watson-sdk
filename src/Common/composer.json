@@ -1,0 +1,44 @@
+{
+    "name": "adam-paterson/watson-common",
+    "type": "library",
+    "description": "",
+    "keywords": [
+        "ibm",
+        "watson",
+        "machine learning"
+    ],
+    "homepage": "https://github.com/adam-paterson/ibm-watson-sdk",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Adam Paterson",
+            "email": "hello@adampaterson.co.uk",
+            "homepage": "https://github.com/adam-paterson",
+            "role": "Developer"
+        },
+        {
+            "name": "All Contributors",
+            "homepage": "https://github.com/adam-paterson/ibm-watson-sdk/contributors"
+        }
+    ],
+    "require": {
+        "php": "~5.6|~7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit" : "~4.0||~5.0",
+        "squizlabs/php_codesniffer": "^2.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "IBM\\Watson\\Common": ""
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
