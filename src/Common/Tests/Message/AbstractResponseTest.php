@@ -3,9 +3,8 @@
 namespace IBM\Watson\Common\Tests\Message;
 
 use Mockery as m;
-use PHPUnit\Framework\TestCase;
 
-class AbstractResponseTest extends TestCase
+class AbstractResponseTest extends \PHPUnit_Framework_TestCase
 {
     protected $response;
 

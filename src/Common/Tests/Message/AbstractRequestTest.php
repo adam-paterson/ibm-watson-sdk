@@ -5,12 +5,10 @@ namespace IBM\Watson\Common\Tests\Message;
 
 use GuzzleHttp\Client;
 use IBM\Watson\Common\Message\AbstractRequest;
-use IBM\Watson\Common\Tests\AbstractServiceTest_MockAbstractService;
 use Mockery as m;
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 
-class AbstractRequestTest extends TestCase
+class AbstractRequestTest extends \PHPUnit_Framework_TestCase
 {
     protected $request;
 

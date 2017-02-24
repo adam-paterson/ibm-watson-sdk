@@ -4,9 +4,8 @@ namespace IBM\Watson\Common\Tests;
 
 use Mockery as m;
 use IBM\Watson\Common\Helper;
-use PHPUnit\Framework\TestCase;
 
-class HelperTest extends TestCase
+class HelperTest extends \PHPUnit_Framework_TestCase
 {
     public function testCamelCase()
     {

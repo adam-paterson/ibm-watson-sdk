@@ -5,9 +5,8 @@ namespace IBM\Watson\Common\Tests;
 use IBM\Watson\Common\AbstractService;
 use IBM\Watson\Common\Message\AbstractRequest;
 use Mockery as m;
-use PHPUnit\Framework\TestCase;
 
-class AbstractServiceTest extends TestCase
+class AbstractServiceTest extends \PHPUnit_Framework_TestCase
 {
     private $service;
 
