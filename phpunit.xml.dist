@@ -10,13 +10,16 @@
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
-        <testsuite name="adam-paterson Test Suite">
-            <directory>tests</directory>
+        <testsuite name="IBM Watson SDK Test Suite">
+            <directory>src/*/Tests/</directory>
         </testsuite>
     </testsuites>
     <filter>
         <whitelist>
             <directory suffix=".php">src/</directory>
+            <exclude>
+                <directory>src/*/Tests</directory>
+            </exclude>
         </whitelist>
     </filter>
     <logging>
