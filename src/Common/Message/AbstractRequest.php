@@ -8,7 +8,6 @@ namespace IBM\Watson\Common\Message;
 use GuzzleHttp\ClientInterface;
 use IBM\Watson\Common\Exception\RuntimeException;
 use IBM\Watson\Common\Helper;
-use Omnipay\Common\Message\ResponseInterface;
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -32,7 +31,7 @@ abstract class AbstractRequest implements RequestInterface
     /**
      * The request client
      *
-     * @var \Guzzle\Http\ClientInterface
+     * @var \GuzzleHttp\ClientInterface
      */
     protected $httpClient;
 
