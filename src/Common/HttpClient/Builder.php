@@ -50,6 +50,11 @@ final class Builder
     private $pluginsPrepend = [];
 
     /**
+     * @var bool
+     */
+    private $learningOptOut;
+
+    /**
      * Builder constructor.
      *
      * @param \Http\Client\HttpClient|null      $httpClient
@@ -87,6 +92,12 @@ final class Builder
 
         if (null !== $this->username && null !== $this->password) {
             $plugins[] = new AuthenticationPlugin(new BasicAuth($this->username, $this->password));
+        }
+
+        if (!$this->learningOptOut) {
+            $plugins[] = new HeaderDefaultsPlugin([
+                'X-Watson-Learning-Opt-Out' => true
+            ]);
         }
 
         return new PluginClient($this->httpClient, array_merge($plugins, $this->pluginsAppend));
@@ -147,6 +158,18 @@ final class Builder
         return $this
             ->withUsername($username)
             ->withPassword($password);
+    }
+
+    /**
+     * Opt out of Watson request logging for all requests made with this client
+     *
+     * @return $this
+     */
+    public function withLearningOptOut()
+    {
+        $this->learningOptOut = false;
+
+        return $this;
     }
 
     /**
