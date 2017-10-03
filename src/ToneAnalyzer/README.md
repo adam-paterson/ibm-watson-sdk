@@ -1,4 +1,4 @@
-<h1 align="center">IBM Watson PHP SDK</h1>
+<h1 align="center">IBM Watson - Tone Analyzer</h1>
 <p align="center">
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
@@ -36,8 +36,46 @@ $ composer require php-http/curl-client guzzlehttp/psr7 php-http/message adam-pa
 
 ## Usage
 
+### Configuring custom client
+```php
+// Create HTTP client with plugins
+$httpClient = (new Builder())
+    ->withCredentials('username', 'password')
+    ->withEndpoint('url')
+    ->appendPlugin(new CachePlugin(), new ErrorPlugin())
+    ->createConfiguredClient();
+ 
+// Use ArrayHydrator
+$hydrator = new IBM\Watson\Common\Hydrator\ArrayHydrator()    
+ 
+// Use custom request builder
+$requestBuilder = new CustomRequestBuilder();
+ 
+$toneAnalyzer = new IBM\Watson\ToneAnalyzer($httpClient, $hydrator, $requestBuilder);
+``` 
+
+### Document Tone Analysis
 ``` php
-$sdk = new IBM\Watson;
+$toneAnalyzer = IBM\Watson\ToneAnalyzer::create('username', 'password');
+  
+$tones = $toneAnalyzer->tone()->analyze('Some text to analyze', [
+    'tones' => 'emotion'
+]);
+  
+foreach ($tones as $tone) {
+    echo $tone->getName() . ' : ' . $tone->getScore() . PHP_EOL;
+}
+```
+
+### Chat Tone Analysis
+```php
+$toneAnalyzer = IBM\Watson\ToneAnalyzer::create('username', 'password');
+ 
+$tones = $toneAnalyzer->toneChat()->analyze('Some text to analyze');
+ 
+foreach ($tones as $tone) {
+    echo $tone->getName() . ' : ' . $tone->getScore() . PHP_EOL;
+}
 ```
 
 ## Change log
@@ -74,6 +112,7 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [ico-code-quality]: https://img.shields.io/scrutinizer/g/adam-paterson/ibm-watson-sdk.svg?style=flat-square
 [ico-sensiolabs]: https://img.shields.io/sensiolabs/i/ae060475-0619-487c-bfdf-7d763574b7b9.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/adam-paterson/ibm-watson-sdk.svg?style=flat-square
+
 
 [link-packagist]: https://packagist.org/packages/adam-paterson/ibm-watson-sdk
 [link-travis]: https://travis-ci.org/adam-paterson/ibm-watson-sdk

@@ -16,9 +16,8 @@ cache:
     - $HOME/.composer/cache
 
 matrix:
-  include:
-    - php: 5.6
-      env: 'COMPOSER_FLAGS="--prefer-stable --prefer-lowest"'
+    allow_failures:
+        - php: hhvm
 
 before_script:
   - travis_retry composer update ${COMPOSER_FLAGS} --no-interaction --prefer-dist
