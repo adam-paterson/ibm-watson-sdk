@@ -68,4 +68,11 @@ class BuilderTest extends TestCase
 
         $this->assertInstanceOf(PluginClient::class, $client);
     }
+
+    public function testWithLearningOptOut()
+    {
+        $client = (new Builder())->withLearningOptOut()->createConfiguredClient();
+
+        $this->assertInstanceOf(PluginClient::class, $client);
+    }
 }
