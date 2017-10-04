@@ -1,12 +1,13 @@
 {
-    "name": "adam-paterson/ibm-watson-sdk",
-    "description": "IBM Watson PHP SDK",
+    "name": "adam-paterson/watson-common",
+    "description": "IBM Watson Common",
     "type": "library",
     "keywords": [
         "IBM",
         "Watson",
         "Machine Learning",
-        "SDK"
+        "SDK",
+        "tone analysis"
     ],
     "require": {
         "php": "~5.6|~7.0",
@@ -23,21 +24,17 @@
         "guzzlehttp/psr7": "^1.4",
         "php-http/guzzle6-adapter": "1.1.*"
     },
-    "replace": {
-        "adam-paterson/watson-common": "self.version",
-        "adam-paterson/watson-tone-analyzer": "self.version"
-    },
     "license": "MIT",
     "authors": [
         {
             "name": "Adam Paterson",
             "email": "hello@adampaterson.co.uk",
-            "homepage": "https://github.com/adam-paterson/ibm-watson-sdk",
+            "homepage": "https://github.com/adam-paterson/watson-common",
             "role": "Developer"
         },
         {
             "name": "All Contributors",
-            "homepage": "https://github.com/adam-paterson/ibm-watson-sdk/contributors"
+            "homepage": "https://github.com/adam-paterson/watson-common/contributors"
         }
     ],
     "autoload": {
