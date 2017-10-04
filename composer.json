@@ -23,6 +23,10 @@
         "guzzlehttp/psr7": "^1.4",
         "php-http/guzzle6-adapter": "1.1.*"
     },
+    "replace": {
+        "adam-paterson/watson-common": "self.version",
+        "adam-paterson/watson-tone-analyzer": "self.version"
+    },
     "license": "MIT",
     "authors": [
         {

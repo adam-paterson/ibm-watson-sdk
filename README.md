@@ -11,17 +11,6 @@
 
 </p>
 
----
-[Installation](#installation)  
-[Usage](#usage)  
-[Change Log](#change-log)  
-[Testing](#testing)  
-[Contributing](#contributing)  
-[Security](#security)  
-[Credits](#credits)  
-[License](#license)  
----
-
 ## Install
 
 This library does not impose a specific dependency for sending HTTP requests. Instead we use [HTTPlug](http://httplug.io/) abstraction library to allows to continue using your existing HTTP implementation or use your favoured one.
@@ -35,9 +24,8 @@ $ composer require php-http/curl-client guzzlehttp/psr7 php-http/message adam-pa
 ```
 
 ## Usage
+```
 
-``` php
-$sdk = new IBM\Watson;
 ```
 
 ## Change log
@@ -56,7 +44,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) and [CONDUCT](CONDUCT.md) for details
 
 ## Security
 
-If you discover any security related issues, please email :author_email instead of using the issue tracker.
+If you discover any security related issues, please email <hello@adampaterson.co.uk> instead of using the issue tracker.
 
 ## Credits
 
