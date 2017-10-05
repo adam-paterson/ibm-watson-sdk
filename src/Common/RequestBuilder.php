@@ -17,7 +17,7 @@ final class RequestBuilder
     /**
      * RequestBuilder constructor.
      *
-     * @param \Http\Message\RequestFactory|null $requestFactory
+     * @param \Http\Message\RequestFactory|\Http\Message\MessageFactory|null $requestFactory
      *
      * @throws \Http\Discovery\Exception\NotFoundException
      */
@@ -31,12 +31,12 @@ final class RequestBuilder
      *
      * @param string                               $method
      * @param string|UriInterface                  $uri
-     * @param array|null                           $headers
+     * @param array                                $headers
      * @param resource|string|StreamInterface|null $body
      *
      * @return \Psr\Http\Message\RequestInterface
      */
-    public function create($method, $uri, array $headers = null, $body = null)
+    public function create($method, $uri, array $headers = [], $body = null)
     {
         return $this->requestFactory->createRequest($method, $uri, $headers, $body);
     }
