@@ -22,6 +22,7 @@ final class RequestBuilder
      *
      * @param \Http\Message\RequestFactory|null                         $requestFactory
      * @param \Http\Message\MultipartStream\MultipartStreamBuilder|null $multipartStreamBuilder
+     * @throws \Http\Discovery\Exception\NotFoundException
      */
     public function __construct(
         RequestFactory $requestFactory = null,
@@ -41,7 +42,7 @@ final class RequestBuilder
      *
      * @return \Psr\Http\Message\RequestInterface
      */
-    public function create($method, $uri, array $headers = null, $body = null)
+    public function create($method, $uri, array $headers = [], $body = null)
     {
         if (!is_array($body)) {
             $request = $this->requestFactory->createRequest($method, $uri, $headers, $body);
