@@ -7,6 +7,8 @@ use Psr\Http\Message\ResponseInterface;
 
 final class ArrayHydrator implements HydratorInterface
 {
+    use ResponseParser;
+
     /**
      * Hydrate API response to array
      *
@@ -18,9 +20,8 @@ final class ArrayHydrator implements HydratorInterface
     public function hydrate(ResponseInterface $response, $class = null)
     {
         $body = $response->getBody()->__toString();
-        if (strpos($response->getHeaderLine('Content-Type'), 'application/json') !== 0) {
+        if (!$this->isResponseJson($response)) {
             $message = 'The ArrayHydrator cannot hydrate response with Content-Type: ';
-
             throw new HydrationException($message . $response->getHeaderLine('Content-Type'));
         }
 

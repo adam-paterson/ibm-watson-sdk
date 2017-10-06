@@ -8,6 +8,8 @@ use Psr\Http\Message\ResponseInterface;
 
 final class ModelHydrator implements HydratorInterface
 {
+    use ResponseParser;
+
     /**
      * Hydrate API response
      *
@@ -25,7 +27,7 @@ final class ModelHydrator implements HydratorInterface
         }
 
         $body = $response->getBody()->__toString();
-        if (\strpos($response->getHeaderLine('Content-Type'), 'application/json') !== 0) {
+        if (!$this->isResponseJson($response)) {
             $message = 'The ModelHydrator cannot hydrate response with Content-Type: ';
             throw new HydrationException($message . $response->getHeaderLine('Content-Type'));
         }
