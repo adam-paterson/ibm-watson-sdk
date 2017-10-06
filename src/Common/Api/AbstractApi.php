@@ -3,7 +3,9 @@
 namespace IBM\Watson\Common\Api;
 
 use Http\Client\HttpClient;
+use IBM\Watson\Common\Exception\Domain\RequestEntityTooLargeException;
 use IBM\Watson\Common\Exception\InsufficientPrivilegesException;
+use IBM\Watson\Common\Exception\InvalidRequestException;
 use IBM\Watson\Common\Exception\NotFoundException;
 use IBM\Watson\Common\Exception\UnknownErrorException;
 use IBM\Watson\Common\Hydrator\HydratorInterface;
@@ -109,9 +111,9 @@ abstract class AbstractApi
     /**
      * Create and send PSR-7 POST request
      *
-     * @param string                               $path
-     * @param resource|string|StreamInterface|null $body
-     * @param array|null                           $headers
+     * @param string                                     $path
+     * @param array|resource|string|StreamInterface|null $body
+     * @param array|null                                 $headers
      *
      * @return \Psr\Http\Message\ResponseInterface
      *
@@ -206,6 +208,8 @@ abstract class AbstractApi
      * @throws \IBM\Watson\Common\Exception\InsufficientPrivilegesException
      * @throws \IBM\Watson\Common\Exception\NotFoundException
      * @throws \IBM\Watson\Common\Exception\UnknownErrorException
+     * @throws \IBM\Watson\Common\Exception\Domain\RequestEntityTooLargeException
+     * @throws \IBM\Watson\Common\Exception\InvalidRequestException
      */
     protected function handleErrors(ResponseInterface $response)
     {
@@ -218,12 +222,16 @@ abstract class AbstractApi
         }
 
         switch ($response->getStatusCode()) {
+            case 400:
+                throw new InvalidRequestException($message);
             case 401:
                 throw new InsufficientPrivilegesException($message);
                 break;
             case 404:
                 throw new NotFoundException($message);
                 break;
+            case 413:
+                throw new RequestEntityTooLargeException($message);
             default:
                 throw new UnknownErrorException($message);
                 break;
