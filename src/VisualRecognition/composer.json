@@ -1,21 +1,17 @@
 {
-    "name": "adam-paterson/ibm-watson-sdk",
-    "description": "IBM Watson PHP SDK",
+    "name": "adam-paterson/watson-visual-recognition",
+    "description": "IBM Watson Visual Recognition",
     "type": "library",
     "keywords": [
         "IBM",
         "Watson",
         "Machine Learning",
-        "SDK"
+        "SDK",
+        "visual recognition"
     ],
     "require": {
         "php": "~5.6|~7.0",
-        "php-http/client-common": "^1.5",
-        "php-http/discovery": "^1.3",
-        "php-http/multipart-stream-builder": "^1.0",
-        "php-http/httplug": "^1.1",
-        "php-http/plugins": "^1.1",
-        "roave/security-advisories": "dev-master"
+        "adam-paterson/watson-common": "1.0-dev"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.0||~5.0||~6.0",
@@ -24,21 +20,17 @@
         "guzzlehttp/psr7": "^1.4",
         "php-http/guzzle6-adapter": "1.1.*"
     },
-    "replace": {
-        "adam-paterson/watson-common": "self.version",
-        "adam-paterson/watson-tone-analyzer": "self.version"
-    },
     "license": "MIT",
     "authors": [
         {
             "name": "Adam Paterson",
             "email": "hello@adampaterson.co.uk",
-            "homepage": "https://github.com/adam-paterson/ibm-watson-sdk",
+            "homepage": "https://github.com/adam-paterson/watson-visual-recognition",
             "role": "Developer"
         },
         {
             "name": "All Contributors",
-            "homepage": "https://github.com/adam-paterson/ibm-watson-sdk/contributors"
+            "homepage": "https://github.com/adam-paterson/watson-visual-recognition/contributors"
         }
     ],
     "autoload": {

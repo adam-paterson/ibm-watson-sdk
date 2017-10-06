@@ -5,6 +5,7 @@ namespace IBM\Watson\Common\HttpClient;
 use Http\Client\Common\Plugin;
 use Http\Client\Common\Plugin\AuthenticationPlugin;
 use Http\Client\Common\Plugin\HeaderDefaultsPlugin;
+use Http\Client\Common\Plugin\QueryDefaultsPlugin;
 use Http\Client\Common\PluginClient;
 use Http\Client\HttpClient;
 use Http\Discovery\HttpClientDiscovery;
@@ -28,6 +29,16 @@ final class Builder
      * @var string
      */
     private $password;
+
+    /**
+     * @var string
+     */
+    private $apiKey;
+
+    /**
+     * @var string
+     */
+    private $version;
 
     /**
      * @var \Http\Client\HttpClient
@@ -100,6 +111,14 @@ final class Builder
             ]);
         }
 
+        if ($this->apiKey) {
+            $plugins[] = new QueryDefaultsPlugin(['api_key' => $this->apiKey]);
+        }
+
+        $version = $this->version ?: \date('Y-m-d');
+        $plugins[] = new QueryDefaultsPlugin(['version' => $version]);
+
+
         return new PluginClient($this->httpClient, array_merge($plugins, $this->pluginsAppend));
     }
 
@@ -141,6 +160,20 @@ final class Builder
     public function withPassword($password)
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    public function withApiKey($apiKey)
+    {
+        $this->apiKey = $apiKey;
+
+        return $this;
+    }
+
+    public function withVersion($version)
+    {
+        $this->version = $version;
 
         return $this;
     }

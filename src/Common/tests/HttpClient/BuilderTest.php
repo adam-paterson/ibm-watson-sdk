@@ -75,4 +75,18 @@ class BuilderTest extends TestCase
 
         $this->assertInstanceOf(PluginClient::class, $client);
     }
+
+    public function testWithApiKey()
+    {
+        $client = (new Builder())->withApiKey('somekey')->createConfiguredClient();
+
+        $this->assertInstanceOf(PluginClient::class, $client);
+    }
+
+    public function testWithVersion()
+    {
+        $client = (new Builder())->withVersion('123')->createConfiguredClient();
+
+        $this->assertInstanceOf(PluginClient::class, $client);
+    }
 }
