@@ -20,8 +20,9 @@ final class RequestBuilder
     /**
      * RequestBuilder constructor.
      *
-     * @param \Http\Message\RequestFactory|null                         $requestFactory
-     * @param \Http\Message\MultipartStream\MultipartStreamBuilder|null $multipartStreamBuilder
+     * @param \Http\Message\RequestFactory|\Http\Message\RequestFactory|null    $requestFactory
+     * @param \Http\Message\MultipartStream\MultipartStreamBuilder|null         $multipartStreamBuilder
+     *
      * @throws \Http\Discovery\Exception\NotFoundException
      */
     public function __construct(
