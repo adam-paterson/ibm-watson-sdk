@@ -1,0 +1,71 @@
+{
+  "name": "adam-paterson/ibm-watson-sdk",
+  "version": "1.0.0",
+  "description": "IBM Watson SDK",
+  "homepage": "https://github.com/adam-paterson/ibm-watson-sdk",
+  "support": {
+    "issues": "https://github.com/adam-paterson/ibm-watson-sdk/issues",
+    "source": "https://github.com/adam-patereson/ibm-watson-sdk"
+  },
+  "keywords": [
+    "IBM Watson SDK",
+    "Machine Learning",
+    "Artificial Intelligence",
+    "AI",
+    "ML"
+  ],
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Adam Paterson",
+      "email": "hello@adampaterson.co.uk",
+      "homepage": "https://adampaterson.co.uk"
+    }
+  ],
+  "require": {
+    "php": "~5.6|~7.0",
+    "php-http/client-common": "^1.7",
+    "php-http/discovery": "^1.4",
+    "php-http/httplug": "^1.1",
+    "php-http/message": "^1.7"
+  },
+  "require-dev": {
+    "mockery/mockery": "^1.1",
+    "php-http/guzzle6-adapter": "^1.1",
+    "phpspec/phpspec": "^5.0",
+    "phpunit/phpunit": "^7.3",
+    "roave/security-advisories": "dev-master",
+    "squizlabs/php_codesniffer": "^3.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "IBM\\Watson\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "IBM\\Watson\\": "tests"
+    }
+  },
+  "scripts": {
+    "test": [
+      "@unit-tests",
+      "@spec-tests",
+      "@code-smell"
+    ],
+    "unit-tests": "phpunit",
+    "spec-tests": "phpspec run",
+    "code-smell": "phpcs"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0-dev"
+    }
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
