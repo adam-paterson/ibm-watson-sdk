@@ -25,6 +25,7 @@
   ],
   "require": {
     "php": "~5.6|~7.0",
+    "ext-json": "*",
     "php-http/client-common": "^1.7",
     "php-http/discovery": "^1.4",
     "php-http/httplug": "^1.1",
