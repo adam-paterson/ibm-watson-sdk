@@ -6,8 +6,11 @@ use Http\Client\Common\Plugin;
 use Http\Client\Common\Plugin\AuthenticationPlugin;
 use Http\Client\Common\PluginClient;
 use Http\Client\HttpClient;
+use Http\Discovery\UriFactoryDiscovery;
+use http\Exception\RuntimeException;
 use Http\Message\Authentication\BasicAuth;
 use Http\Message\UriFactory;
+use IBM\Watson\Common\Exception\Api\InvalidArgumentException;
 use IBM\Watson\Common\Hydrator\HydratorInterface;
 use IBM\Watson\Common\Util\DiscoveryTrait;
 
@@ -44,6 +47,16 @@ final class Builder
     private $password;
 
     /**
+     * @var string
+     */
+    private $host;
+
+    /**
+     * @var string
+     */
+    private $version;
+
+    /**
      * @param \Http\Client\HttpClient|null  $httpClient
      * @param \Http\Message\UriFactory|null $uriFactory
      */
@@ -52,19 +65,21 @@ final class Builder
         UriFactory $uriFactory = null
     ) {
         $this->httpClient = $httpClient ?: $this->discoverHttpClient();
-        $this->uriFactory = $uriFactory;
+        $this->uriFactory = $uriFactory ?: $this->discoverUriFactory();
     }
 
     /**
      * Create a configured HTTP client
      *
      * @return \Http\Client\Common\PluginClient
+     * @throws \Exception
      */
     public function createConfiguredClient()
     {
-        if (null !== $this->username && null !== $this->password) {
-            $this->plugins[] = new AuthenticationPlugin(new BasicAuth($this->username, $this->password));
-        }
+        $this->addHostPlugin();
+        $this->addPathPlugin();
+        $this->addVersionQueryPlugin();
+        $this->addAuthenticationPlugin();
 
         return new PluginClient($this->httpClient, $this->plugins);
     }
@@ -113,6 +128,30 @@ final class Builder
     }
 
     /**
+     * @param string $host
+     *
+     * @return $this
+     */
+    public function withHost($host)
+    {
+        $this->host = $host;
+
+        return $this;
+    }
+
+    /**
+     * @param string $version
+     *
+     * @return $this
+     */
+    public function withVersion($version)
+    {
+        $this->version = $version;
+
+        return $this;
+    }
+
+    /**
      * @param \Http\Client\Common\Plugin ...$plugins
      *
      * @return $this
@@ -122,6 +161,81 @@ final class Builder
         foreach ($plugins as $plugin) {
             $this->plugins[] = $plugin;
         }
+
+        return $this;
+    }
+
+    /**
+     * @return \Psr\Http\Message\UriInterface
+     */
+    private function getHostUri()
+    {
+        return $this->uriFactory->createUri($this->host);
+    }
+
+    /**
+     * @param string $version
+     *
+     * @return bool
+     */
+    private function validateVersion($version)
+    {
+        $date = \DateTime::createFromFormat('Y-m-d', $version);
+
+        return $date && $date->format('Y-m-d') === $version;
+    }
+
+    /**
+     * @return $this
+     */
+    private function addHostPlugin()
+    {
+        if (null !== $this->host) {
+            $this->plugins[] = new Plugin\AddHostPlugin($this->getHostUri());
+        }
+
+        return $this;
+    }
+
+
+    /**
+     * @return $this
+     */
+    private function addAuthenticationPlugin()
+    {
+        if (null !== $this->username && null !== $this->password) {
+            $this->plugins[] = new AuthenticationPlugin(new BasicAuth($this->username, $this->password));
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    private function addVersionQueryPlugin()
+    {
+        if (null === $this->version) {
+            $this->version = date('Y-m-d');
+        }
+
+        if (!$this->validateVersion($this->version)) {
+            throw new InvalidArgumentException('Version must be a date in the Y-m-d format');
+        }
+
+        $this->plugins[] = new Plugin\QueryDefaultsPlugin([
+            'version' => $this->version
+        ]);
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    private function addPathPlugin()
+    {
+        $this->plugins[] = new Plugin\AddPathPlugin($this->uriFactory->createUri('/tone-analyzer/api/v3'));
 
         return $this;
     }

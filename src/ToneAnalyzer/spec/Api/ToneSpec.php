@@ -1,17 +1,15 @@
 <?php
 
-namespace spec\IBM\Watson\Common\stubs;
+namespace spec\IBM\Watson\ToneAnalyzer\Api;
 
 use Http\Client\HttpClient;
-use http\Env\Response;
-use IBM\Watson\Common\Api\AbstractApi;
 use IBM\Watson\Common\Hydrator\HydratorInterface;
 use IBM\Watson\Common\RequestBuilder;
-use IBM\Watson\Common\stubs\Api;
+use IBM\Watson\ToneAnalyzer\Api\Tone;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
-class ApiSpec extends ObjectBehavior
+class ToneSpec extends ObjectBehavior
 {
     function let(
         HttpClient $httpClient,
@@ -27,7 +25,11 @@ class ApiSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType(Api::class);
-        $this->shouldHaveType(AbstractApi::class);
+        $this->shouldHaveType(Tone::class);
+    }
+
+    function it_should_analyze_tone()
+    {
+
     }
 }

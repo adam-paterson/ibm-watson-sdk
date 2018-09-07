@@ -4,6 +4,7 @@ namespace IBM\Watson\Common\Util;
 
 use Http\Discovery\HttpClientDiscovery;
 use Http\Discovery\MessageFactoryDiscovery;
+use Http\Discovery\UriFactoryDiscovery;
 
 /**
  * Discovery utility
@@ -28,5 +29,15 @@ trait DiscoveryTrait
     public function discoverMessageFactory()
     {
         return MessageFactoryDiscovery::find();
+    }
+
+    /**
+     * Discover configured uri factory.
+     *
+     * @return \Http\Message\UriFactory
+     */
+    public function discoverUriFactory()
+    {
+        return UriFactoryDiscovery::find();
     }
 }

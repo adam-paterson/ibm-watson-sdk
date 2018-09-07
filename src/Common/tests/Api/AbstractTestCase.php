@@ -18,7 +18,7 @@ abstract class AbstractTestCase extends TestCase
     public function setUp()
     {
         $this->httpClient = m::mock(HttpClient::class);
-        $this->hydrator = m::mock(HydratorInterface::class);
+        $this->hydrator = m::mock(HydratorInterface::class)->makePartial();
         $this->requestBuilder = new RequestBuilder();
     }
 
@@ -41,5 +41,23 @@ abstract class AbstractTestCase extends TestCase
         $this->httpClient->shouldReceive('sendRequest')->once()->andReturnUsing(function () {
             return new Response(500, [], '{"error":"The service encountered an internal error"}');
         });
+    }
+
+    public function getMockResponse($path, $code = 200)
+    {
+        $ref = new \ReflectionObject($this);
+        $dir = dirname($ref->getFileName());
+
+        if (!file_exists($dir . '/mock/'. $path) && file_exists($dir . '/../mock/' . $path )) {
+            return new Response(
+                $code,
+                [
+                    'Content-Type' => 'application/json'
+                ],
+                file_get_contents($dir . '/../mock/' . $path)
+            );
+        }
+
+        return new Response($code, [], file_get_contents($dir . '/mock/' . $path));
     }
 }

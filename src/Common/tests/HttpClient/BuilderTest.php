@@ -47,8 +47,20 @@ class BuilderTest extends TestCase
     {
         $client = (new Builder($this->httpClient))
             ->withCredentials('username', 'password')
+            ->withHost('https://api.host.com/')
             ->createConfiguredClient();
 
         $this->assertInstanceOf(HttpClient::class, $client);
+    }
+
+    /**
+     * @expectedException \IBM\Watson\Common\Exception\Api\InvalidArgumentException
+     * @expectedExceptionMessage Version must be a date in the Y-m-d format
+     */
+    public function testInvalidVersionThrowsException()
+    {
+        $client = (new Builder($this->httpClient))
+            ->withVersion('34-43-23')
+            ->createConfiguredClient();
     }
 }

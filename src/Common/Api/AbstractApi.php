@@ -3,6 +3,7 @@
 namespace IBM\Watson\Common\Api;
 
 use Http\Client\HttpClient;
+use IBM\Watson\Common\Exception\Api\BadRequestException;
 use IBM\Watson\Common\Exception\Domain\InsufficientPrivilegesException;
 use IBM\Watson\Common\Exception\Domain\NotFoundException;
 use IBM\Watson\Common\Exception\Domain\UnknownErrorException;
@@ -34,7 +35,7 @@ abstract class AbstractApi
     /**
      * @var \IBM\Watson\Common\Hydrator\HydratorInterface
      */
-    private $hydrator;
+    protected $hydrator;
 
     /**
      * @var \IBM\Watson\Common\RequestBuilder
@@ -156,6 +157,7 @@ abstract class AbstractApi
      * @throws \IBM\Watson\Common\Exception\Domain\InsufficientPrivilegesException
      * @throws \IBM\Watson\Common\Exception\Domain\NotFoundException
      * @throws \IBM\Watson\Common\Exception\Domain\UnknownErrorException
+     * @throws \IBM\Watson\Common\Exception\Api\BadRequestException
      */
     protected function handleErrors(ResponseInterface $response)
     {
@@ -168,6 +170,8 @@ abstract class AbstractApi
         }
 
         switch ($response->getStatusCode()) {
+            case 400:
+                throw new BadRequestException($message);
             case 401:
                 throw new InsufficientPrivilegesException($message);
             case 404:
