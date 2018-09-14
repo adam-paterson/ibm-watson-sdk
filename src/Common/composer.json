@@ -1,0 +1,47 @@
+{
+  "name": "adam-paterson/watson-common",
+  "version": "1.0.0",
+  "description": "IBM Watson Common Classes",
+  "homepage": "https://github.com/adam-paterson/watson-common",
+  "support": {
+    "issues": "https://github.com/adam-paterson/watson-common/issues",
+    "source": "https://github.com/adam-paterson/watson-common"
+  },
+  "keywords": [
+    "IBM Watson SDK",
+    "Machine Learning",
+    "Artificial Intelligence",
+    "AI",
+    "ML",
+    "Tone analyzer"
+  ],
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Adam Paterson",
+      "email": "hello@adampaterson.co.uk",
+      "homepage": "https://adampaterson.co.uk"
+    }
+  ],
+  "require": {
+    "php": "~5.6|~7.0",
+    "ext-json": "*",
+    "adam-paterson/watson-common": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "IBM\\Watson\\Common": ""
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0-dev"
+    }
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
