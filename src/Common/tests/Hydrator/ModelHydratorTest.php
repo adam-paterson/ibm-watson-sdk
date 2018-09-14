@@ -3,7 +3,6 @@
 
 namespace IBM\Watson\Common\Hydrator\ArrayHydratorTest;
 
-
 use IBM\Watson\Common\Hydrator\ModelHydrator;
 use IBM\Watson\Common\stubs\CreateableFromArrayModel;
 use IBM\Watson\Common\stubs\Model;

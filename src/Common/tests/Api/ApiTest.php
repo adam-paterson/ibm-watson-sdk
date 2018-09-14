@@ -1,9 +1,9 @@
 <?php
 
-namespace IBM\Watson\Common\stubs;
+namespace IBM\Watson\Common\tests\Api;
 
 use GuzzleHttp\Psr7\Response;
-use IBM\Watson\Common\tests\Api\AbstractTestCase;
+use IBM\Watson\Common\stubs\Api;
 
 class ApiTest extends AbstractTestCase
 {

@@ -5,6 +5,7 @@ namespace IBM\Watson\Common;
 use Http\Client\HttpClient;
 use IBM\Watson\Common\Hydrator\ArrayHydrator;
 use IBM\Watson\Common\Hydrator\HydratorInterface;
+use IBM\Watson\Common\Hydrator\ModelHydrator;
 use IBM\Watson\Common\Util\DiscoveryTrait;
 
 /**
@@ -40,7 +41,7 @@ abstract class AbstractClient
         RequestBuilder $requestBuilder = null
     ) {
         $this->httpClient     = $httpClient ?: $this->discoverHttpClient();
-        $this->hydrator       = $hydrator ?: new ArrayHydrator();
+        $this->hydrator       = $hydrator ?: new ModelHydrator();
         $this->requestBuilder = $requestBuilder ?: new RequestBuilder();
     }
 }

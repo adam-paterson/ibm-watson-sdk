@@ -7,10 +7,21 @@ use IBM\Watson\Common\Model\CreateableFromArray;
 use IBM\Watson\Common\Util\ResponseParser;
 use Psr\Http\Message\ResponseInterface;
 
+/**
+ * Class ModelHydrator
+ */
 class ModelHydrator implements HydratorInterface
 {
     use ResponseParser;
 
+    /**
+     * @param \Psr\Http\Message\ResponseInterface $response
+     * @param string|null                         $class
+     *
+     * @return mixed
+     *
+     * @throws \ReflectionException
+     */
     public function hydrate(ResponseInterface $response, $class = null)
     {
         if (null === $class) {
@@ -40,5 +51,4 @@ class ModelHydrator implements HydratorInterface
 
         return $model;
     }
-
 }

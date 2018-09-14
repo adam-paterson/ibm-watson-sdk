@@ -18,9 +18,9 @@ class ArrayHydrator implements HydratorInterface
      * @param \Psr\Http\Message\ResponseInterface $response
      * @param string|null                         $class
      *
-     * @throws \IBM\Watson\Common\Exception\HydrationException
-     *
      * @return mixed
+     *
+     * @throws \IBM\Watson\Common\Exception\HydrationException
      */
     public function hydrate(ResponseInterface $response, $class = null)
     {

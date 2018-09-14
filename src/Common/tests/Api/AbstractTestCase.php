@@ -48,7 +48,7 @@ abstract class AbstractTestCase extends TestCase
         $ref = new \ReflectionObject($this);
         $dir = dirname($ref->getFileName());
 
-        if (!file_exists($dir . '/mock/'. $path) && file_exists($dir . '/../mock/' . $path )) {
+        if (!file_exists($dir . '/mock/'. $path) && file_exists($dir . '/../mock/' . $path)) {
             return new Response(
                 $code,
                 [

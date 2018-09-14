@@ -9,6 +9,7 @@ use IBM\Watson\Common\Exception\Domain\NotFoundException;
 use IBM\Watson\Common\Exception\Domain\UnknownErrorException;
 use IBM\Watson\Common\Hydrator\HydratorInterface;
 use IBM\Watson\Common\RequestBuilder;
+use IBM\Watson\Common\Util\ValidateQueryParams;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UriInterface;
@@ -18,6 +19,8 @@ use Psr\Http\Message\UriInterface;
  */
 abstract class AbstractApi
 {
+    use ValidateQueryParams;
+
     /**
      * @var string HTTP methods
      */
@@ -55,6 +58,7 @@ abstract class AbstractApi
         $this->httpClient     = $httpClient;
         $this->hydrator = $hydrator;
         $this->requestBuilder = $requestBuilder;
+        $this->setAllowedParams();
     }
 
     /**
@@ -67,6 +71,7 @@ abstract class AbstractApi
      */
     protected function get($path, array $params = [], array $headers = [])
     {
+        $params = $this->validateQueryParams($params);
         $path = $this->buildQueryPath($path, $params);
 
         return $this->httpClient->sendRequest(
@@ -84,6 +89,8 @@ abstract class AbstractApi
      */
     protected function post($path, array $params = [], array $headers = [])
     {
+        $params = $this->validateQueryParams($params);
+
         return $this->postRaw($path, \http_build_query($params), $headers);
     }
 
@@ -112,6 +119,8 @@ abstract class AbstractApi
      */
     protected function put($path, array $params = [], array $headers = [])
     {
+        $params = $this->validateQueryParams($params);
+
         return $this->httpClient->sendRequest(
             $this->requestBuilder->create(static::HTTP_METHOD_PUT, $path, $headers, \http_build_query($params))
         );
@@ -127,6 +136,8 @@ abstract class AbstractApi
      */
     protected function patch($path, array $params = [], array $headers = [])
     {
+        $params = $this->validateQueryParams($params);
+
         return $this->httpClient->sendRequest(
             $this->requestBuilder->create(static::HTTP_METHOD_PATCH, $path, $headers, \json_encode($params))
         );
@@ -142,6 +153,8 @@ abstract class AbstractApi
      */
     protected function delete($path, array $params = [], array $headers = [])
     {
+        $params = $this->validateQueryParams($params);
+
         return $this->httpClient->sendRequest(
             $this->requestBuilder->create(static::HTTP_METHOD_DELETE, $path, $headers, \http_build_query($params))
         );
@@ -152,12 +165,10 @@ abstract class AbstractApi
      *
      * @param \Psr\Http\Message\ResponseInterface $response
      *
-     * @return void
-     *
+     * @throws \IBM\Watson\Common\Exception\Api\BadRequestException
      * @throws \IBM\Watson\Common\Exception\Domain\InsufficientPrivilegesException
      * @throws \IBM\Watson\Common\Exception\Domain\NotFoundException
      * @throws \IBM\Watson\Common\Exception\Domain\UnknownErrorException
-     * @throws \IBM\Watson\Common\Exception\Api\BadRequestException
      */
     protected function handleErrors(ResponseInterface $response)
     {
@@ -197,4 +208,9 @@ abstract class AbstractApi
 
         return $path;
     }
+
+    /**
+     * @return $this
+     */
+    abstract protected function setAllowedParams();
 }

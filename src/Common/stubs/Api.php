@@ -12,6 +12,7 @@ class Api extends AbstractApi
     /**
      * @return \Psr\Http\Message\ResponseInterface
      * @throws \Http\Client\Exception
+     * @throws \IBM\Watson\Common\Exception\Api\BadRequestException
      * @throws \IBM\Watson\Common\Exception\Domain\InsufficientPrivilegesException
      * @throws \IBM\Watson\Common\Exception\Domain\NotFoundException
      * @throws \IBM\Watson\Common\Exception\Domain\UnknownErrorException
@@ -32,6 +33,7 @@ class Api extends AbstractApi
     /**
      * @return \Psr\Http\Message\ResponseInterface
      * @throws \Http\Client\Exception
+     * @throws \IBM\Watson\Common\Exception\Api\BadRequestException
      * @throws \IBM\Watson\Common\Exception\Domain\InsufficientPrivilegesException
      * @throws \IBM\Watson\Common\Exception\Domain\NotFoundException
      * @throws \IBM\Watson\Common\Exception\Domain\UnknownErrorException
@@ -50,6 +52,7 @@ class Api extends AbstractApi
     /**
      * @return \Psr\Http\Message\ResponseInterface
      * @throws \Http\Client\Exception
+     * @throws \IBM\Watson\Common\Exception\Api\BadRequestException
      * @throws \IBM\Watson\Common\Exception\Domain\InsufficientPrivilegesException
      * @throws \IBM\Watson\Common\Exception\Domain\NotFoundException
      * @throws \IBM\Watson\Common\Exception\Domain\UnknownErrorException
@@ -68,6 +71,7 @@ class Api extends AbstractApi
     /**
      * @return \Psr\Http\Message\ResponseInterface
      * @throws \Http\Client\Exception
+     * @throws \IBM\Watson\Common\Exception\Api\BadRequestException
      * @throws \IBM\Watson\Common\Exception\Domain\InsufficientPrivilegesException
      * @throws \IBM\Watson\Common\Exception\Domain\NotFoundException
      * @throws \IBM\Watson\Common\Exception\Domain\UnknownErrorException
@@ -86,6 +90,7 @@ class Api extends AbstractApi
     /**
      * @return \Psr\Http\Message\ResponseInterface
      * @throws \Http\Client\Exception
+     * @throws \IBM\Watson\Common\Exception\Api\BadRequestException
      * @throws \IBM\Watson\Common\Exception\Domain\InsufficientPrivilegesException
      * @throws \IBM\Watson\Common\Exception\Domain\NotFoundException
      * @throws \IBM\Watson\Common\Exception\Domain\UnknownErrorException
@@ -104,6 +109,7 @@ class Api extends AbstractApi
     /**
      * @return \Psr\Http\Message\ResponseInterface
      * @throws \Http\Client\Exception
+     * @throws \IBM\Watson\Common\Exception\Api\BadRequestException
      * @throws \IBM\Watson\Common\Exception\Domain\InsufficientPrivilegesException
      * @throws \IBM\Watson\Common\Exception\Domain\NotFoundException
      * @throws \IBM\Watson\Common\Exception\Domain\UnknownErrorException
@@ -117,5 +123,17 @@ class Api extends AbstractApi
         }
 
         return $response;
+    }
+
+    /**
+     * @return \IBM\Watson\Common\Api\AbstractApi
+     */
+    protected function setAllowedParams()
+    {
+        $this->allowedParams = [
+            'param'
+        ];
+
+        return $this;
     }
 }

@@ -176,7 +176,7 @@ final class Builder
     /**
      * @param string $version
      *
-     * @return bool
+     * @return boolean
      */
     private function validateVersion($version)
     {
@@ -212,6 +212,8 @@ final class Builder
 
     /**
      * @return $this
+     *
+     * @throws InvalidArgumentException
      */
     private function addVersionQueryPlugin()
     {
