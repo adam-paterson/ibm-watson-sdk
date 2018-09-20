@@ -1,0 +1,9 @@
+suites:
+    WatsonCommon:
+        namespace: IBM\Watson\Common
+        psr4_prefix: IBM\Watson\Common
+        src_path: src/Common
+        spec_path: src/Common
+        composer_suite_detection: true
+
+formatter.name: pretty
