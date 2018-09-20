@@ -60,6 +60,7 @@ abstract class AbstractApi implements ApiInterface
      * @param array               $headers Query headers.
      *
      * @return \Psr\Http\Message\ResponseInterface
+     *
      * @throws \Http\Client\Exception
      */
     protected function head($uri, array $headers = []): ResponseInterface
@@ -76,6 +77,7 @@ abstract class AbstractApi implements ApiInterface
      * @param array               $headers Query headers.
      *
      * @return \Psr\Http\Message\ResponseInterface
+     *
      * @throws \Http\Client\Exception
      */
     protected function trace($uri, array $headers = []): ResponseInterface
@@ -145,6 +147,7 @@ abstract class AbstractApi implements ApiInterface
      * @param array                                $headers Query headers.
      *
      * @return \Psr\Http\Message\ResponseInterface
+     *
      * @throws \Http\Client\Exception
      */
     protected function patch($uri, $body, array $headers = []): ResponseInterface
@@ -162,6 +165,7 @@ abstract class AbstractApi implements ApiInterface
      * @param array               $headers Query headers.
      *
      * @return \Psr\Http\Message\ResponseInterface
+     *
      * @throws \Http\Client\Exception
      */
     protected function delete($uri, array $params = [], array $headers = []): ResponseInterface
@@ -179,6 +183,7 @@ abstract class AbstractApi implements ApiInterface
      * @param array               $headers Query headers.
      *
      * @return \Psr\Http\Message\ResponseInterface
+     *
      * @throws \Http\Client\Exception
      */
     protected function options($uri, array $params = [], array $headers = []): ResponseInterface

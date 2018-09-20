@@ -28,12 +28,12 @@ class Builder
     private $plugins = [];
 
     /**
-     * @var string $username
+     * @var string
      */
     private $username;
 
     /**
-     * @var string $password
+     * @var string
      */
     private $password;
 

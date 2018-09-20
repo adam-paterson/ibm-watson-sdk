@@ -11,6 +11,7 @@ class Api extends AbstractApi
 {
     /**
      * @return \Psr\Http\Message\ResponseInterface
+     *
      * @throws \Http\Client\Exception
      */
     public function httpMethodGet()
@@ -20,6 +21,7 @@ class Api extends AbstractApi
 
     /**
      * @return \Psr\Http\Message\ResponseInterface
+     *
      * @throws \Http\Client\Exception
      */
     public function httpMethodHead()
@@ -29,6 +31,7 @@ class Api extends AbstractApi
 
     /**
      * @return \Psr\Http\Message\ResponseInterface
+     *
      * @throws \Http\Client\Exception
      */
     public function httpMethodTrace()
@@ -38,6 +41,7 @@ class Api extends AbstractApi
 
     /**
      * @return \Psr\Http\Message\ResponseInterface
+     *
      * @throws \Http\Client\Exception
      */
     public function httpMethodPost()
@@ -47,6 +51,7 @@ class Api extends AbstractApi
 
     /**
      * @return \Psr\Http\Message\ResponseInterface
+     *
      * @throws \Http\Client\Exception
      */
     public function httpMethodPut()
@@ -56,6 +61,7 @@ class Api extends AbstractApi
 
     /**
      * @return \Psr\Http\Message\ResponseInterface
+     *
      * @throws \Http\Client\Exception
      */
     public function httpMethodPatch()
@@ -65,6 +71,7 @@ class Api extends AbstractApi
 
     /**
      * @return \Psr\Http\Message\ResponseInterface
+     *
      * @throws \Http\Client\Exception
      */
     public function httpMethodDelete()
@@ -74,6 +81,7 @@ class Api extends AbstractApi
 
     /**
      * @return \Psr\Http\Message\ResponseInterface
+     *
      * @throws \Http\Client\Exception
      */
     public function httpMethodOptions()
