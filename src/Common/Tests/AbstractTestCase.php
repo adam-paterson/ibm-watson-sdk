@@ -30,8 +30,8 @@ abstract class AbstractTestCase extends TestCase
     /**
      * Get mock response from file.
      *
-     * @param string  $path Location of the response file.
-     * @param integer $code HTTP status code.
+     * @param string $path Location of the response file.
+     * @param int    $code HTTP status code.
      *
      * @return \GuzzleHttp\Psr7\Response
      */
@@ -40,16 +40,16 @@ abstract class AbstractTestCase extends TestCase
         $ref = new ReflectionObject($this);
         $dir = \dirname($ref->getFileName());
 
-        if (!file_exists($dir . '/mock/'. $path) && file_exists($dir . '/../mock/' . $path)) {
+        if (!file_exists($dir.'/mock/'.$path) && file_exists($dir.'/../mock/'.$path)) {
             return new Response(
                 $code,
                 [
-                    'Content-Type' => 'application/json'
+                    'Content-Type' => 'application/json',
                 ],
-                file_get_contents($dir . '/../mock/' . $path)
+                file_get_contents($dir.'/../mock/'.$path)
             );
         }
 
-        return new Response($code, [], file_get_contents($dir . '/mock/' . $path));
+        return new Response($code, [], file_get_contents($dir.'/mock/'.$path));
     }
 }
