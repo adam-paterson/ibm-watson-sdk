@@ -2,6 +2,7 @@
 
 namespace spec\IBM\Watson\Common\Hydrator;
 
+use IBM\Watson\Common\Exception\HydrationException;
 use IBM\Watson\Common\Hydrator\AbstractHydrator;
 use IBM\Watson\Common\Hydrator\HydratorInterface;
 use IBM\Watson\Common\Hydrator\ModelHydrator;
@@ -26,7 +27,7 @@ class ModelHydratorSpec extends ObjectBehavior
 
     public function it_should_thrown_exception_when_class_is_not_provided($response)
     {
-        $this->shouldThrow(\BadMethodCallException::class)->during('hydrate', [$response]);
+        $this->shouldThrow(HydrationException::class)->during('hydrate', [$response]);
     }
 
     public function it_should_throw_exception_when_unable_to_parse_response($response)
@@ -35,7 +36,7 @@ class ModelHydratorSpec extends ObjectBehavior
             ->withArguments(['Content-Type'])
             ->willReturn('text/plain');
 
-        $this->shouldThrow(\BadMethodCallException::class)->during('hydrate', [$response]);
+        $this->shouldThrow(HydrationException::class)->during('hydrate', [$response]);
     }
 
     public function it_should_hydrate_response(StreamInterface $stream, ResponseInterface $response)

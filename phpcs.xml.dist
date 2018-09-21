@@ -29,6 +29,7 @@
         <exclude name="Squiz.Commenting.FunctionComment.InvalidReturn" />
         <!-- Disabled until bug https://github.com/squizlabs/PHP_CodeSniffer/issues/1471 is resolved -->
         <exclude name="Squiz.Commenting.FunctionCommentThrowTag.WrongNumber" />
+        <exclude name="Squiz.Commenting.FunctionCommentThrowTag.Missing" />
     </rule>
 
     <rule ref="Squiz.Commenting.FunctionComment.Missing">

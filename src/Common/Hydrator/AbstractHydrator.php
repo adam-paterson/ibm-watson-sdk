@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace IBM\Watson\Common\Hydrator;
 
+use IBM\Watson\Common\Exception\JsonException;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -36,10 +37,22 @@ abstract class AbstractHydrator implements HydratorInterface
     /**
      * @param \Psr\Http\Message\ResponseInterface $response Response to parse.
      *
-     * @return array|null
+     * @return array
+     *
+     * @throws \IBM\Watson\Common\Exception\JsonException
      */
-    protected function getBodyContent(ResponseInterface $response): ?array
+    protected function getBodyContent(ResponseInterface $response): array
     {
-        return json_decode($this->getBody($response), true);
+        $json = json_decode($this->getBody($response), true);
+
+        if (JSON_ERROR_NONE !== json_last_error()) {
+            throw new JsonException(sprintf(
+                'Error (%d) when trying to json_decode response: %s',
+                \json_last_error(),
+                \json_last_error_msg()
+            ));
+        }
+
+        return $json;
     }
 }

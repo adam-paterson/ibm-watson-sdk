@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace IBM\Watson\Common\Hydrator;
 
+use IBM\Watson\Common\Exception\HydrationException;
 use IBM\Watson\Common\Model\CreatableFromArray;
 use Psr\Http\Message\ResponseInterface;
 use ReflectionClass;
@@ -22,28 +23,22 @@ class ModelHydrator extends AbstractHydrator
      * @return \IBM\Watson\Common\Model\CreatableFromArray
      *
      * @throws \ReflectionException
-     * @throws \BadMethodCallException
+     * @throws \IBM\Watson\Common\Exception\HydrationException
+     * @throws \IBM\Watson\Common\Exception\JsonException
      */
     public function hydrate(ResponseInterface $response, string $class = null)
     {
         if (null === $class) {
-            throw new \BadMethodCallException('The ModelHydrator requires a model class as the second parameter.');
+            throw new HydrationException('The ModelHydrator requires a model class as the second parameter.');
         }
 
         if (!$this->isJsonResponse($response)) {
             $message = 'The ModelHydrator cannot hydrate a response with Content-Type: ';
 
-            throw new \BadMethodCallException($message.$response->getHeaderLine('Content-Type'));
+            throw new HydrationException($message.$response->getHeaderLine('Content-Type'));
         }
 
         $body = $this->getBodyContent($response);
-        if (JSON_ERROR_NONE !== \json_last_error()) {
-            throw new \BadMethodCallException(sprintf(
-                'Error (%d) when trying to json_decode response: %s',
-                \json_last_error(),
-                \json_last_error_msg()
-            ));
-        }
 
         $reflection = new ReflectionClass($class);
         if ($reflection->implementsInterface(CreatableFromArray::class)) {

@@ -55,7 +55,7 @@ class ArrayHydratorTest extends AbstractTestCase
     }
 
     /**
-     * @expectedException \BadMethodCallException
+     * @expectedException \IBM\Watson\Common\Exception\HydrationException
      * @expectedExceptionMessage The ArrayHydrator cannot hydrate a response with Content-Type: text/plain
      */
     public function testNoneJsonExceptionIsThrown()
@@ -70,7 +70,7 @@ class ArrayHydratorTest extends AbstractTestCase
     }
 
     /**
-     * @expectedException \BadMethodCallException
+     * @expectedException \IBM\Watson\Common\Exception\JsonException
      * @expectedExceptionMessage Error (4) when trying to json_decode response: Syntax error
      */
     public function testInvalidJsonExceptionIsThrown()

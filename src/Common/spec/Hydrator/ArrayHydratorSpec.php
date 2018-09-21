@@ -2,7 +2,7 @@
 
 namespace spec\IBM\Watson\Common\Hydrator;
 
-use BadMethodCallException;
+use IBM\Watson\Common\Exception\HydrationException;
 use IBM\Watson\Common\Hydrator\AbstractHydrator;
 use IBM\Watson\Common\Hydrator\ArrayHydrator;
 use IBM\Watson\Common\Hydrator\HydratorInterface;
@@ -31,7 +31,7 @@ class ArrayHydratorSpec extends ObjectBehavior
             ->withArguments(['Content-Type'])
             ->willReturn('text/plain');
 
-        $this->shouldThrow(BadMethodCallException::class)->during('hydrate', [$response]);
+        $this->shouldThrow(HydrationException::class)->during('hydrate', [$response]);
     }
 
     public function it_should_hydrate_response(StreamInterface $stream, ResponseInterface $response)

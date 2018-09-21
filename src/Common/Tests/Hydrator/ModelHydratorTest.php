@@ -45,7 +45,7 @@ class ModelHydratorTest extends AbstractTestCase
     }
 
     /**
-     * @expectedException \BadMethodCallException
+     * @expectedException \IBM\Watson\Common\Exception\HydrationException
      * @expectedExceptionMessage The ModelHydrator requires a model class as the second parameter
      */
     public function testNoModelSuppliedException()
@@ -56,7 +56,7 @@ class ModelHydratorTest extends AbstractTestCase
     }
 
     /**
-     * @expectedException \BadMethodCallException
+     * @expectedException \IBM\Watson\Common\Exception\HydrationException
      * @expectedExceptionMessage The ModelHydrator cannot hydrate a response with Content-Type: text/plain
      */
     public function testNoneJsonExceptionIsThrown()
@@ -70,7 +70,7 @@ class ModelHydratorTest extends AbstractTestCase
     }
 
     /**
-     * @expectedException \BadMethodCallException
+     * @expectedException \IBM\Watson\Common\Exception\JsonException
      */
     public function testInvalidJsonExceptionIsThrown()
     {
