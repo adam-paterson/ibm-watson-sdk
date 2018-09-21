@@ -17,7 +17,6 @@ abstract class AbstractHydrator implements HydratorInterface
      * @param \Psr\Http\Message\ResponseInterface $response Response to check.
      *
      * @return bool
-     *
      */
     protected function isJsonResponse(ResponseInterface $response): bool
     {

@@ -23,6 +23,7 @@ class ArrayHydrator extends AbstractHydrator
     {
         if (!$this->isJsonResponse($response)) {
             $message = 'The ArrayHydrator cannot hydrate a response with Content-Type: ';
+
             throw new \BadMethodCallException($message.$response->getHeaderLine(self::HEADER_CONTENT_TYPE));
         }
 
