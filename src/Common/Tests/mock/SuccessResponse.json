@@ -1,0 +1,16 @@
+{
+  "name": "Adam Paterson",
+  "dob": "11/09/1990",
+  "star-sign": "Virgo",
+  "relationship_status": "married",
+  "children": [
+    {
+      "age": 2,
+      "sex": "Female"
+    },
+    {
+      "age": 4,
+      "sex": "Female"
+    }
+  ]
+}
