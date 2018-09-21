@@ -11,6 +11,8 @@ use ReflectionObject;
 
 abstract class AbstractTestCase extends TestCase
 {
+    const DIR_MOCK = '/mock/';
+
     /**
      * @var \Http\Client\HttpClient
      */
@@ -37,19 +39,23 @@ abstract class AbstractTestCase extends TestCase
      */
     public function getMockResponse($path, $code = 200): Response
     {
-        $ref = new ReflectionObject($this);
-        $dir = \dirname($ref->getFileName());
+        return new Response($code, [], $this->getRawMockResponse($path));
+    }
 
-        if (!file_exists($dir.'/mock/'.$path) && file_exists($dir.'/../mock/'.$path)) {
-            return new Response(
-                $code,
-                [
-                    'Content-Type' => 'application/json',
-                ],
-                file_get_contents($dir.'/../mock/'.$path)
-            );
+    public function getRawMockResponse($path)
+    {
+        $reflection = new ReflectionObject($this);
+        $directory = \dirname($reflection->getFileName());
+
+        $absolutePath = $directory.self::DIR_MOCK.$path;
+        $relativePath = $directory.'/../'.self::DIR_MOCK.$path;
+
+        if (!file_exists($absolutePath) && file_exists($relativePath)) {
+            $raw = file_get_contents($relativePath);
+        } else {
+            $raw = file_get_contents($absolutePath);
         }
 
-        return new Response($code, [], file_get_contents($dir.'/mock/'.$path));
+        return $raw ?: false;
     }
 }
