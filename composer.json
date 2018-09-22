@@ -51,10 +51,7 @@
   "autoload-dev": {
     "psr-4": {
       "IBM\\Watson\\": "tests"
-    },
-    "exclude-from-classmap": [
-      "**/Tests/"
-    ]
+    }
   },
   "scripts": {
     "test": [

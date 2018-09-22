@@ -5,5 +5,11 @@ suites:
         src_path: src/Common
         spec_path: src/Common
         composer_suite_detection: true
+    ToneAnalyzer:
+        namespace: IBM\Watson\ToneAnalyzer
+        psr4_prefix: IBM\Watson\ToneAnalyzer
+        src_path: src/ToneAnalyzer
+        spec_path: src/ToneAnalyzer
+        compose_suite_detection: true
 
 formatter.name: pretty

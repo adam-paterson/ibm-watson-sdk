@@ -31,9 +31,9 @@ abstract class AbstractTestCase extends TestCase
 
     public function setUp()
     {
-        $this->httpClient = m::mock(HttpClient::class);
-        $this->hydrator = m::mock(HydratorInterface::class);
-        $this->requestBuilder = m::mock(RequestBuilder::class);
+        $this->httpClient = m::mock(HttpClient::class)->makePartial();
+        $this->hydrator = m::mock(HydratorInterface::class)->makePartial();
+        $this->requestBuilder = m::mock(RequestBuilder::class)->makePartial();
     }
 
     /**

@@ -17,17 +17,17 @@ abstract class AbstractApi implements ApiInterface
     /**
      * @var \Http\Client\HttpClient
      */
-    private $httpClient;
+    protected $httpClient;
 
     /**
      * @var \IBM\Watson\Common\Hydrator\HydratorInterface
      */
-    private $hydrator;
+    protected $hydrator;
 
     /**
      * @var RequestBuilderInterface
      */
-    private $requestBuilder;
+    protected $requestBuilder;
 
     /**
      * @param \Http\Client\HttpClient                       $httpClient     HTTP client to send requests.
@@ -200,5 +200,10 @@ abstract class AbstractApi implements ApiInterface
         return $this->httpClient->sendRequest(
             $this->requestBuilder->create(static::HTTP_METHOD_OPTIONS, $uri, $params, $headers)
         );
+    }
+
+    protected function handleErrors(ResponseInterface $response)
+    {
+        return $response->getStatusCode();
     }
 }

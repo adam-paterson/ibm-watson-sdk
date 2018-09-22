@@ -34,6 +34,11 @@ class WatsonService implements WatsonServiceInterface
     protected $requestBuilder;
 
     /**
+     * @var string
+     */
+    protected $hostname;
+
+    /**
      * @param \Http\Client\HttpClient|null                       $httpClient     HTTP client to send requests.
      * @param \IBM\Watson\Common\Hydrator\HydratorInterface|null $hydrator       Hydrator to hydrate responses.
      * @param \IBM\Watson\Common\RequestBuilderInterface|null    $requestBuilder Request builder to create requests.
