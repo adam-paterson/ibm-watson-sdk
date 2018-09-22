@@ -2,6 +2,7 @@
 
 namespace IBM\Watson\Common\Tests;
 
+use IBM\Watson\Common\Hydrator\HydratorInterface;
 use Mockery as m;
 use GuzzleHttp\Psr7\Response;
 use Http\Client\HttpClient;
@@ -19,6 +20,11 @@ abstract class AbstractTestCase extends TestCase
     protected $httpClient;
 
     /**
+     * @var HydratorInterface
+     */
+    protected $hydrator;
+
+    /**
      * @var \IBM\Watson\Common\RequestBuilderInterface
      */
     protected $requestBuilder;
@@ -26,6 +32,7 @@ abstract class AbstractTestCase extends TestCase
     public function setUp()
     {
         $this->httpClient = m::mock(HttpClient::class);
+        $this->hydrator = m::mock(HydratorInterface::class);
         $this->requestBuilder = m::mock(RequestBuilder::class);
     }
 

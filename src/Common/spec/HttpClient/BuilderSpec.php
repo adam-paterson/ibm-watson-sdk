@@ -2,9 +2,10 @@
 
 namespace spec\IBM\Watson\Common\HttpClient;
 
+use Http\Message\Authentication;
+use Mockery as m;
 use IBM\Watson\Common\HttpClient\Builder;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class BuilderSpec extends ObjectBehavior
 {
@@ -13,10 +14,8 @@ class BuilderSpec extends ObjectBehavior
         $this->shouldHaveType(Builder::class);
     }
 
-    public function it_should_accept_user_credentials()
+    public function it_should_accept_authentication()
     {
-        $this->withCredentials('username', 'password')->shouldReturn($this);
-        $this->withUsername('username')->shouldReturn($this);
-        $this->withPassword('password')->shouldReturn($this);
+        $this->withAuthentication(m::mock(Authentication::class))->shouldReturn($this);
     }
 }

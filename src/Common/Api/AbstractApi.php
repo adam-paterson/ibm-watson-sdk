@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace IBM\Watson\Common\Api;
 
 use Http\Client\HttpClient;
+use IBM\Watson\Common\Hydrator\HydratorInterface;
 use IBM\Watson\Common\RequestBuilderInterface;
 use Psr\Http\Message\ResponseInterface;
 
@@ -19,19 +20,27 @@ abstract class AbstractApi implements ApiInterface
     private $httpClient;
 
     /**
+     * @var \IBM\Watson\Common\Hydrator\HydratorInterface
+     */
+    private $hydrator;
+
+    /**
      * @var RequestBuilderInterface
      */
     private $requestBuilder;
 
     /**
-     * @param \Http\Client\HttpClient                    $httpClient     HTTP client to send requests.
-     * @param \IBM\Watson\Common\RequestBuilderInterface $requestBuilder Request builder to create requests.
+     * @param \Http\Client\HttpClient                       $httpClient     HTTP client to send requests.
+     * @param \IBM\Watson\Common\Hydrator\HydratorInterface $hydrator       HydratorInterface to hydrate response.
+     * @param \IBM\Watson\Common\RequestBuilderInterface    $requestBuilder Request builder to create requests.
      */
     public function __construct(
         HttpClient $httpClient,
+        HydratorInterface $hydrator,
         RequestBuilderInterface $requestBuilder
     ) {
         $this->httpClient = $httpClient;
+        $this->hydrator = $hydrator;
         $this->requestBuilder = $requestBuilder;
     }
 
