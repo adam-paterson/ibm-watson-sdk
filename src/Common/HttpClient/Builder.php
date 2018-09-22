@@ -4,11 +4,15 @@ declare(strict_types=1);
 
 namespace IBM\Watson\Common\HttpClient;
 
+use Http\Client\Common\Plugin\AddHostPlugin;
+use Http\Client\Common\Plugin\AddPathPlugin;
 use Http\Client\Common\Plugin\AuthenticationPlugin;
 use Http\Client\Common\PluginClient;
 use Http\Client\HttpClient;
-use Http\Message\Authentication\BasicAuth;
+use Http\Message\Authentication;
+use Http\Message\UriFactory;
 use IBM\Watson\Common\Util\DiscoveryTrait;
+use Psr\Http\Message\UriInterface;
 
 /**
  * Builder creates a user configured HTTP client.
@@ -23,27 +27,40 @@ class Builder
     private $httpClient;
 
     /**
+     * @var \Http\Message\UriFactory
+     */
+    private $uriFactory;
+
+    /**
+     * @var \Http\Message\Authentication
+     */
+    private $authentication;
+
+    /**
+     * @var string
+     */
+    private $hostname;
+
+    /**
+     * @var string
+     */
+    private $path;
+
+    /**
      * @var array
      */
     private $plugins = [];
 
     /**
-     * @var string
-     */
-    private $username;
-
-    /**
-     * @var string
-     */
-    private $password;
-
-    /**
-     * @param HttpClient|null $httpClient HTTP Client for sending requests.
+     * @param HttpClient|null               $httpClient HTTP client for sending requests.
+     * @param \Http\Message\UriFactory|null $uriFactory URI factory for creating URI.
      */
     public function __construct(
-        HttpClient $httpClient = null
+        HttpClient $httpClient = null,
+        UriFactory $uriFactory = null
     ) {
         $this->httpClient = $httpClient ?: $this->discoverHttpClient();
+        $this->uriFactory = $uriFactory ?: $this->discoverUriFactory();
     }
 
     /**
@@ -51,63 +68,98 @@ class Builder
      */
     public function createConfiguredClient(): PluginClient
     {
+        $this->addHostPlugin();
+        $this->addPathPlugin();
         $this->addAuthenticationPlugin();
 
         return new PluginClient($this->httpClient, $this->plugins);
     }
 
     /**
-     * Add username and password to client.
-     *
-     * @param string $username API username.
-     * @param string $password API password.
-     *
-     * @return \IBM\Watson\Common\HttpClient\Builder
-     */
-    public function withCredentials($username, $password): self
-    {
-        return $this
-            ->withUsername($username)
-            ->withPassword($password);
-    }
-
-    /**
-     * Add username to client.
-     *
-     * @param string $username API username.
+     * @param \Http\Message\Authentication $authentication Authentication method.
      *
      * @return $this
      */
-    public function withUsername($username): self
+    public function withAuthentication(Authentication $authentication): self
     {
-        $this->username = $username;
+        $this->authentication = $authentication;
 
         return $this;
     }
 
     /**
-     * Add password to client.
-     *
-     * @param string $password API password.
+     * @param string $hostname API Hostname.
      *
      * @return $this
      */
-    public function withPassword($password): self
+    public function withHostname(string $hostname): self
     {
-        $this->password = $password;
+        $this->hostname = $hostname;
 
         return $this;
     }
 
     /**
-     * Add BasicAuth authentication plugin to client.
+     * @param string $path Default API path.
+     *
+     * @return $this
+     */
+    public function withPath(string $path): self
+    {
+        $this->path = $path;
+
+        return $this;
+    }
+
+    /**
+     * Add authentication plugin to client.
      *
      * @return $this
      */
     private function addAuthenticationPlugin(): self
     {
-        if (null !== $this->username && null !== $this->password) {
-            $this->plugins[] = new AuthenticationPlugin(new BasicAuth($this->username, $this->password));
+        if (null !== $this->authentication) {
+            $this->plugins[] = new AuthenticationPlugin($this->authentication);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return \Psr\Http\Message\UriInterface
+     */
+    private function getHostUri(): UriInterface
+    {
+        return $this->uriFactory->createUri($this->hostname);
+    }
+
+    /**
+     * @return \Psr\Http\Message\UriInterface
+     */
+    private function getPathUri(): UriInterface
+    {
+        return $this->uriFactory->createUri($this->path);
+    }
+
+    /**
+     * @return \IBM\Watson\Common\HttpClient\Builder
+     */
+    private function addHostPlugin(): self
+    {
+        if (null !== $this->hostname) {
+            $this->plugins[] = new AddHostPlugin($this->getHostUri());
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    private function addPathPlugin(): self
+    {
+        if (null !== $this->path) {
+            $this->plugins[] = new AddPathPlugin($this->getPathUri());
         }
 
         return $this;

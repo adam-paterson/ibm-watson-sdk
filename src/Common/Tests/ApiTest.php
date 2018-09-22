@@ -18,7 +18,7 @@ class ApiTest extends AbstractTestCase
     {
         parent::setUp();
 
-        $this->api = new Api($this->httpClient, $this->requestBuilder);
+        $this->api = new Api($this->httpClient, $this->hydrator, $this->requestBuilder);
 
         $this->requestBuilder
             ->shouldReceive('create')
