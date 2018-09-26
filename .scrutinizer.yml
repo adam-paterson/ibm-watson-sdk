@@ -1,0 +1,17 @@
+build:
+  nodes:
+    analysis:
+      tests:
+        override:
+          - php-scrutinizer-run
+filter:
+  paths: [src/*]
+  excluded_paths:
+    - "*/Tests/*"
+    - "*/spec/*"
+checks:
+  php:
+    code_rating: true
+    duplication: true
+tools:
+  external_code_coverage: true

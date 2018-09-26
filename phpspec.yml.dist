@@ -1,0 +1,9 @@
+suites:
+    Core:
+        namespace: IBM\Watson\Core
+        psr4_prefix: IBM\Watson\Core
+        src_path: src/Core
+        spec_path: src/Core
+        composer_suite_detection: true
+
+formatter.name: pretty
