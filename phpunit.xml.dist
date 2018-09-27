@@ -20,6 +20,7 @@
             <exclude>
                 <directory>src/*/spec/</directory>
                 <directory>src/*/tests/</directory>
+                <directory>src/*/stubs/</directory>
             </exclude>
         </whitelist>
     </filter>

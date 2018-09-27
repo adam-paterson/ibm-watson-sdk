@@ -14,7 +14,7 @@ use IBM\Watson\Core\Exception\HydrationException;
  * @copyright 2018 Adam Paterson
  * @license   https://opensource.org/licenses/MIT  MIT License
  */
-class ArrayHydrator implements HydratorInterface
+class ArrayHydrator extends AbstractHydrator
 {
     /**
      * @param \Psr\Http\Message\ResponseInterface $response
@@ -28,34 +28,13 @@ class ArrayHydrator implements HydratorInterface
             throw new HydrationException(
                 sprintf(
                     'ArrayHydrator cannot hydrate response with Content-Type: %s',
-                    $response->getHeaderLine('Content-Type')
+                    $this->getContentType($response)
                 )
             );
         }
 
-        $body = $response->getBody()->__toString();
-        $data = json_decode($body, true);
+        $content = $this->getBodyContent($response);
 
-        if (JSON_ERROR_NONE !== json_last_error()) {
-            throw new HydrationException(sprintf(
-                'Error (%d) when trying to json_decode response: %s',
-                \json_last_error(),
-                \json_last_error_msg()
-            ));
-        }
-
-        return $data;
-    }
-
-    /**
-     * Is response json?
-     *
-     * @param \Psr\Http\Message\ResponseInterface $response
-     *
-     * @return bool
-     */
-    private function isJson(ResponseInterface $response): bool
-    {
-        return 0 === \strpos($response->getHeaderLine('Content-Type'), 'application/json');
+        return $content;
     }
 }
