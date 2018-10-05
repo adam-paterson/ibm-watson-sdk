@@ -6,6 +6,7 @@ namespace IBM\Watson\Core;
 
 use Http\Message\Authentication;
 use Http\Client\Common\HttpMethodsClient;
+use IBM\Watson\Core\Hydrator\HydratorInterface;
 
 /**
  * Watson API client interface.
@@ -26,7 +27,9 @@ interface ClientInterface
     /**
      * @param \Http\Message\Authentication $authentication
      *
+     * @param \IBM\Watson\Core\Hydrator\HydratorInterface|null $hydrator
+     *
      * @return mixed
      */
-    public static function create(Authentication $authentication);
+    public static function create(Authentication $authentication, HydratorInterface $hydrator = null);
 }

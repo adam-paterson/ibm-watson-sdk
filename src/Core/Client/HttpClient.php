@@ -52,6 +52,6 @@ class HttpClient implements HttpClientInterface
             $this->exceptionHandler->handle($request, $response);
         }
 
-        return $this->httpClient->sendRequest($request);
+        return $response;
     }
 }

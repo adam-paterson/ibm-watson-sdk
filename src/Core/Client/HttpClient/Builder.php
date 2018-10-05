@@ -14,8 +14,11 @@ use Http\Discovery\UriFactoryDiscovery;
 use Http\Client\Common\HttpMethodsClient;
 use Http\Discovery\MessageFactoryDiscovery;
 use Http\Client\Common\Plugin\AddHostPlugin;
+use Http\Client\Common\Plugin\AddPathPlugin;
+use Http\Client\Common\Plugin\QueryDefaultsPlugin;
 use Http\Client\Common\Plugin\AuthenticationPlugin;
 use Http\Client\Common\Plugin\HeaderDefaultsPlugin;
+use IBM\Watson\Core\Client\HttpClient as ExceptionHandlerHttpClient;
 
 /**
  * HTTP Client stack builder.
@@ -31,6 +34,8 @@ class Builder
     private $uriFactory;
     private $authentication;
     private $host;
+    private $path;
+    private $version;
 
     /**
      * @return \Http\Client\Common\HttpMethodsClient
@@ -101,6 +106,30 @@ class Builder
     }
 
     /**
+     * @param string $path
+     *
+     * @return $this
+     */
+    public function withPath(string $path)
+    {
+        $this->path = $path;
+
+        return $this;
+    }
+
+    /**
+     * @param string $version
+     *
+     * @return $this
+     */
+    public function withVersion(string $version)
+    {
+        $this->version = $version;
+
+        return $this;
+    }
+
+    /**
      * @return \Http\Client\HttpClient
      */
     private function getHttpClient(): HttpClient
@@ -155,6 +184,16 @@ class Builder
             $plugins[] = new AddHostPlugin($this->getUriFactory()->createUri($this->host));
         }
 
-        return new PluginClient($this->getHttpClient(), $plugins);
+        if (null !== $this->path) {
+            $plugins[] = new AddPathPlugin($this->getUriFactory()->createUri($this->path));
+        }
+
+        if (null !== $this->version) {
+            $plugins[] = new QueryDefaultsPlugin([
+                'version' => $this->version
+            ]);
+        }
+
+        return new PluginClient(new ExceptionHandlerHttpClient($this->getHttpClient()), $plugins);
     }
 }

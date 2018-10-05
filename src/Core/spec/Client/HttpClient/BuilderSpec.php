@@ -46,4 +46,14 @@ class BuilderSpec extends ObjectBehavior
     {
         $this->withHost('http://example.com/api')->shouldReturn($this);
     }
+
+    function it_sets_default_path_when_provided()
+    {
+        $this->withPath('api/v3')->shouldReturn($this);
+    }
+
+    function it_sets_default_version_to_todays_date()
+    {
+        $this->withVersion('2018-09-11')->shouldReturn($this);
+    }
 }

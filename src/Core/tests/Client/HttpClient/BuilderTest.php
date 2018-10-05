@@ -35,9 +35,18 @@ class BuilderTest extends TestCase
             ->shouldReceive('getHost')
             ->andReturn('example.com');
 
+        $this->uri
+            ->shouldReceive('getPath')
+            ->andReturn('api/path');
+
         $this->uriFactory
             ->shouldReceive('createUri')
             ->with('https://example.com')
+            ->andReturn($this->uri);
+
+        $this->uriFactory
+            ->shouldReceive('createUri')
+            ->with('api/path')
             ->andReturn($this->uri);
 
         $httpClient = (new Builder())
@@ -45,6 +54,8 @@ class BuilderTest extends TestCase
             ->setRequestFactory($this->requestFactory)
             ->setUriFactory($this->uriFactory)
             ->withAuthentication($this->authentication)
+            ->withVersion('2018-09-11')
+            ->withPath('api/path')
             ->withHost('https://example.com')
             ->create();
 
@@ -80,11 +91,46 @@ class BuilderTest extends TestCase
         $this->assertInstanceOf(Builder::class, $builder);
     }
 
+    public function testSetUriFactory()
+    {
+        $builder = new Builder();
+        $builder->setUriFactory($this->uriFactory);
+
+        $this->assertInstanceOf(Builder::class, $builder);
+    }
+
     public function testWithAuthentication()
     {
         $builder = new Builder();
         $builder->withAuthentication($this->authentication);
 
         $this->assertInstanceOf(Builder::class, $builder);
+    }
+
+    public function testWithVersion()
+    {
+        $builder = new Builder();
+        $builder->withVersion('2018-09-11');
+
+        $this->assertInstanceOf(Builder::class, $builder);
+    }
+
+    public function testWithPath()
+    {
+        $builder = new Builder();
+        $builder->withPath('api/path');
+
+        $this->assertInstanceOf(Builder::class, $builder);
+    }
+
+    public function testCreatePluginsClient()
+    {
+        $httpClient = (new Builder())
+            ->withPath('api/path')
+            ->withVersion('2018-09-11')
+            ->withAuthentication($this->authentication)
+            ->create();
+
+        $this->assertInstanceOf(HttpMethodsClient::class, $httpClient);
     }
 }
