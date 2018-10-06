@@ -16,7 +16,7 @@ use IBM\Watson\Core\Model\CreatableFromArrayInterface;
  * @copyright 2018 Adam Paterson
  * @license   https://opensource.org/licenses/MIT  MIT License
  */
-class ModelHydrator extends AbstractHydrator
+final class ModelHydrator extends AbstractHydrator
 {
     /**
      * @param \Psr\Http\Message\ResponseInterface $response

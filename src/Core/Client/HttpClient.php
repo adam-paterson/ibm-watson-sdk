@@ -9,7 +9,8 @@ use Psr\Http\Message\ResponseInterface;
 use Http\Client\HttpClient as HttpClientInterface;
 
 /**
- * HTTP Client to send a PSR-7 compliant request.
+ * HTTP Client to send a PSR-7 compliant request, wraps an ExceptionHandler client to throw
+ * exceptions when API returns an error response.
  *
  * @author    Adam Paterson <hello@adampaterson.co.uk>
  * @copyright 2018 Adam Paterson

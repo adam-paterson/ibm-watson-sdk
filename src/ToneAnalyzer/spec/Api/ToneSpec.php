@@ -2,17 +2,16 @@
 
 namespace spec\IBM\Watson\ToneAnalyzer\Api;
 
-use Http\Client\Common\HttpMethodsClient;
+use PhpSpec\ObjectBehavior;
 use Http\Message\UriFactory;
+use Psr\Http\Message\UriInterface;
 use IBM\Watson\Core\Api\AbstractApi;
 use IBM\Watson\Core\Api\ApiInterface;
-use IBM\Watson\Core\Exception\InvalidArgumentException;
-use IBM\Watson\Core\Hydrator\HydratorInterface;
 use IBM\Watson\ToneAnalyzer\Api\Tone;
-use IBM\Watson\ToneAnalyzer\Model\ToneAnalysis;
-use PhpSpec\ObjectBehavior;
 use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\UriInterface;
+use Http\Client\Common\HttpMethodsClient;
+use IBM\Watson\Core\Hydrator\HydratorInterface;
+use IBM\Watson\ToneAnalyzer\Model\ToneAnalysis;
 
 class ToneSpec extends ObjectBehavior
 {
@@ -44,13 +43,12 @@ class ToneSpec extends ObjectBehavior
             ->willReturn('v3/tone?sentences=0');
 
         $httpClient
-            ->post($uri, [], '{"text":"some text"}')
+            ->post($uri, ['Content-Language' => 'en', 'Accept-Language' => 'en'], '{"text":"some text"}')
             ->willReturn($response);
 
         $hydrator
             ->hydrate($response, ToneAnalysis::class)
             ->willReturn(['document_tone' => []]);
-
 
         $this->analyze('some text', false)->shouldBeArray();
     }

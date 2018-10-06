@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace IBM\Watson\ToneAnalyzer;
 
+use Http\Message\UriFactory;
 use Http\Message\Authentication;
+use Http\Discovery\UriFactoryDiscovery;
 use Http\Client\Common\HttpMethodsClient;
 use IBM\Watson\Core\Hydrator\ModelHydrator;
 use IBM\Watson\Core\Client\HttpClient\Builder;
@@ -30,15 +32,23 @@ class Client
     private $hydrator;
 
     /**
+     * @var \Http\Message\UriFactory
+     */
+    private $uriFactory;
+
+    /**
      * @param \Http\Client\Common\HttpMethodsClient       $httpClient
      * @param \IBM\Watson\Core\Hydrator\HydratorInterface $hydrator
+     * @param \Http\Message\UriFactory|null               $uriFactory
      */
     public function __construct(
         HttpMethodsClient $httpClient,
-        HydratorInterface $hydrator = null
+        HydratorInterface $hydrator = null,
+        UriFactory $uriFactory = null
     ) {
         $this->httpClient = $httpClient;
         $this->hydrator   = $hydrator ?? new ModelHydrator();
+        $this->uriFactory = $uriFactory ?? UriFactoryDiscovery::find();
     }
 
     /**
@@ -67,6 +77,16 @@ class Client
      */
     public function tone(): Api\Tone
     {
-        return new Api\Tone($this->httpClient, $this->hydrator);
+        return new Api\Tone($this->httpClient, $this->hydrator, $this->uriFactory);
+    }
+
+    /**
+     * Get ToneChat api endpoint.
+     *
+     * @return \IBM\Watson\ToneAnalyzer\Api\ToneChat
+     */
+    public function toneChat(): Api\ToneChat
+    {
+        return new Api\ToneChat($this->httpClient, $this->hydrator, $this->uriFactory);
     }
 }

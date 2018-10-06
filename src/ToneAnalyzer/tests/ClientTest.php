@@ -8,6 +8,7 @@ use PHPUnit\Framework\TestCase;
 use Http\Message\Authentication;
 use IBM\Watson\ToneAnalyzer\Client;
 use IBM\Watson\ToneAnalyzer\Api\Tone;
+use IBM\Watson\ToneAnalyzer\Api\ToneChat;
 use IBM\Watson\Core\Hydrator\HydratorInterface;
 
 class ClientTest extends TestCase
@@ -34,5 +35,11 @@ class ClientTest extends TestCase
     {
         $client = Client::create($this->authentication);
         $this->assertInstanceOf(Tone::class, $client->tone());
+    }
+
+    public function testToneChat()
+    {
+        $client = Client::create($this->authentication);
+        $this->assertInstanceOf(ToneChat::class, $client->toneChat());
     }
 }

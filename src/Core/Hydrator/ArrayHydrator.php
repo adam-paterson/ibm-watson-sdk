@@ -14,7 +14,7 @@ use IBM\Watson\Core\Exception\HydrationException;
  * @copyright 2018 Adam Paterson
  * @license   https://opensource.org/licenses/MIT  MIT License
  */
-class ArrayHydrator extends AbstractHydrator
+final class ArrayHydrator extends AbstractHydrator
 {
     /**
      * @param \Psr\Http\Message\ResponseInterface $response
@@ -33,8 +33,6 @@ class ArrayHydrator extends AbstractHydrator
             );
         }
 
-        $content = $this->getBodyContent($response);
-
-        return $content;
+        return $this->getBodyContent($response);
     }
 }

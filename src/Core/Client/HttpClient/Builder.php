@@ -29,15 +29,44 @@ use IBM\Watson\Core\Client\HttpClient as ExceptionHandlerHttpClient;
  */
 class Builder
 {
+    /**
+     * @var \Http\Client\HttpClient
+     */
     private $httpClient;
+
+    /**
+     * @var RequestFactory
+     */
     private $requestFactory;
+
+    /**
+     * @var \Http\Message\UriFactory
+     */
     private $uriFactory;
+
+    /**
+     * @var \Http\Message\Authentication
+     */
     private $authentication;
+
+    /**
+     * @var string
+     */
     private $host;
+
+    /**
+     * @var string
+     */
     private $path;
+
+    /*
+     * @var string
+     */
     private $version;
 
     /**
+     * Create stacked HTTP client.
+     *
      * @return \Http\Client\Common\HttpMethodsClient
      */
     public function create(): HttpMethodsClient
@@ -46,6 +75,8 @@ class Builder
     }
 
     /**
+     * Add authentication interface to HTTP Client.
+     *
      * @param \Http\Message\Authentication $authentication
      *
      * @return $this
@@ -58,6 +89,8 @@ class Builder
     }
 
     /**
+     * Set base HTTP client to be set explicitly.
+     *
      * @param \Http\Client\HttpClient $httpClient
      *
      * @return $this
@@ -70,6 +103,8 @@ class Builder
     }
 
     /**
+     * Set request factory explicitly.
+     *
      * @param \Http\Message\RequestFactory $requestFactory
      *
      * @return $this
@@ -82,6 +117,8 @@ class Builder
     }
 
     /**
+     * Build HTTP client with specified host.
+     *
      * @param string $host
      *
      * @return $this
@@ -94,6 +131,8 @@ class Builder
     }
 
     /**
+     * Set URI Factory explicitly.
+     *
      * @param \Http\Message\UriFactory $uriFactory
      *
      * @return $this
@@ -106,6 +145,8 @@ class Builder
     }
 
     /**
+     * Add default request path to HTTP client.
+     *
      * @param string $path
      *
      * @return $this
@@ -118,6 +159,8 @@ class Builder
     }
 
     /**
+     * Add version to HTTP client.
+     *
      * @param string $version
      *
      * @return $this
@@ -130,6 +173,8 @@ class Builder
     }
 
     /**
+     * Get or discover HTTP client class.
+     *
      * @return \Http\Client\HttpClient
      */
     private function getHttpClient(): HttpClient
@@ -142,6 +187,8 @@ class Builder
     }
 
     /**
+     * Get or discover Request Factory class.
+     *
      * @return \Http\Message\RequestFactory
      */
     private function getRequestFactory(): RequestFactory
@@ -154,6 +201,8 @@ class Builder
     }
 
     /**
+     * Get or discover URI factory class.
+     *
      * @return \Http\Message\UriFactory
      */
     private function getUriFactory(): UriFactory
@@ -166,6 +215,8 @@ class Builder
     }
 
     /**
+     * Create stacked HTTP client.
+     *
      * @return \Http\Client\Common\PluginClient
      */
     private function createPluginsClient(): PluginClient
