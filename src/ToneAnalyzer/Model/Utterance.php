@@ -51,8 +51,8 @@ class Utterance implements CreatableFromArrayInterface
     /**
      * Gets the text.
      *
-     * An utterance contributed by a user in the conversation that is to be analyzed. The utterance can contain multiple
-     * sentences.
+     * An utterance contributed by a user in the conversation that is to be analyzed.
+     * The utterance can contain multiple sentences.
      *
      * @return string
      */

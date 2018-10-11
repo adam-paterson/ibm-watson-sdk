@@ -59,8 +59,8 @@ class ToneScore implements CreatableFromArrayInterface
      * 2016-05-19: The service can return results for the following tone IDs of the different categories: for the
      * `emotion` category: `anger`, `disgust`, `fear`, `joy`, and `sadness`; for the `language` category: `analytical`,
      * `confident`, and `tentative`; for the `social` category: `openness_big5`, `conscientiousness_big5`,
-     * `extraversion_big5`, `agreeableness_big5`, and `emotional_range_big5`. The service returns scores for all tones of
-     * a category, regardless of their values.
+     * `extraversion_big5`, `agreeableness_big5`, and `emotional_range_big5`. The service returns scores for all tones
+     * of a category, regardless of their values.
      *
      * @return string
      */
@@ -88,8 +88,8 @@ class ToneScore implements CreatableFromArrayInterface
      * high likelihood that the tone is perceived in the content.
      *
      * 2016-05-19: The score that is returned lies in the range of 0 to 1. A score less than 0.5 indicates that
-     * the tone is unlikely to be perceived in the content; a score greater than 0.75 indicates a high likelihood that the
-     * tone is perceived.
+     * the tone is unlikely to be perceived in the content; a score greater than 0.75 indicates a high likelihood that
+     * the tone is perceived.
      *
      * @return float
      */

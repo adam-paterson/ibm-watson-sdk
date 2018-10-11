@@ -37,12 +37,13 @@ class ToneChat extends AbstractApi
      * For each utterance of a conversation, the method reports the most prevalent subset of the following seven tones:
      * sad, frustrated, satisfied, excited, polite, impolite, and sympathetic.
      *
-     * If you submit more than 50 utterances, the service returns a warning for the overall content and analyzes only the
-     * first 50 utterances. If you submit a single utterance that contains more than 500 characters, the service returns
-     * an error for that utterance and does not analyze the utterance. The request fails if all utterances have more than
-     * 500 characters.
+     * If you submit more than 50 utterances, the service returns a warning for the overall content and analyzes only
+     * the first 50 utterances. If you submit a single utterance that contains more than 500 characters, the service
+     * returns an error for that utterance and does not analyze the utterance. The request fails if all utterances
+     * have more than 500 characters.
      *
      * Per the JSON specification, the default character encoding for JSON content is effectively always UTF-8.
+ *
 
      * @param array $utterances
      * @param array $parameters

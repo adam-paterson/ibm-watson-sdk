@@ -11,14 +11,13 @@ use Http\Message\RequestFactory;
 use Http\Client\Common\PluginClient;
 use Http\Discovery\HttpClientDiscovery;
 use Http\Discovery\UriFactoryDiscovery;
-use Http\Client\Common\HttpMethodsClient;
 use Http\Discovery\MessageFactoryDiscovery;
 use Http\Client\Common\Plugin\AddHostPlugin;
 use Http\Client\Common\Plugin\AddPathPlugin;
 use Http\Client\Common\Plugin\QueryDefaultsPlugin;
 use Http\Client\Common\Plugin\AuthenticationPlugin;
 use Http\Client\Common\Plugin\HeaderDefaultsPlugin;
-use IBM\Watson\Core\Client\HttpClient as ExceptionHandlerHttpClient;
+use IBM\Watson\Core\Client\HttpClient as HttpMethodsClient;
 
 /**
  * HTTP Client stack builder.
@@ -67,7 +66,7 @@ class Builder
     /**
      * Create stacked HTTP client.
      *
-     * @return \Http\Client\Common\HttpMethodsClient
+     * @return \IBM\Watson\Core\Client\HttpClient
      */
     public function create(): HttpMethodsClient
     {
@@ -245,6 +244,6 @@ class Builder
             ]);
         }
 
-        return new PluginClient(new ExceptionHandlerHttpClient($this->getHttpClient()), $plugins);
+        return new PluginClient($this->getHttpClient(), $plugins);
     }
 }

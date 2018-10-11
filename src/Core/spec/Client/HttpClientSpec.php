@@ -5,6 +5,7 @@ namespace spec\IBM\Watson\Core\Client;
 use Http\Client\Exception\HttpException;
 use Http\Client\HttpClient as HttpClientInterface;
 use http\Exception\RuntimeException;
+use Http\Message\RequestFactory;
 use IBM\Watson\Core\Client\HttpClient;
 use PhpSpec\ObjectBehavior;
 use Psr\Http\Message\RequestInterface;
@@ -13,9 +14,9 @@ use Psr\Http\Message\StreamInterface;
 
 class HttpClientSpec extends ObjectBehavior
 {
-    function let(HttpClientInterface $httpClient)
+    function let(HttpClientInterface $httpClient, RequestFactory $requestFactory)
     {
-        $this->beConstructedWith($httpClient);
+        $this->beConstructedWith($httpClient, $requestFactory);
     }
 
     function it_is_initializable()

@@ -4,6 +4,7 @@ namespace IBM\Watson\Core\tests\Client;
 
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
+use Http\Message\RequestFactory;
 use IBM\Watson\Core\Client\HttpClient;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -14,12 +15,14 @@ class HttpClientTest extends TestCase
     private $httpClient;
     private $request;
     private $response;
+    private $requestFactory;
 
     public function setUp()
     {
-        $this->httpClient = m::mock(HttpClientInterface::class);
-        $this->request    = m::mock(RequestInterface::class);
-        $this->response   = m::mock(ResponseInterface::class);
+        $this->httpClient     = m::mock(HttpClientInterface::class);
+        $this->request        = m::mock(RequestInterface::class);
+        $this->response       = m::mock(ResponseInterface::class);
+        $this->requestFactory = m::mock(RequestFactory::class);
 
         $this->httpClient
             ->shouldReceive('sendRequest')
@@ -33,7 +36,7 @@ class HttpClientTest extends TestCase
             ->shouldReceive('getStatusCode')
             ->andReturn(200);
 
-        $httpClient = new HttpClient($this->httpClient);
+        $httpClient = new HttpClient($this->httpClient, $this->requestFactory);
 
         $response = $httpClient->sendRequest($this->request);
 
@@ -60,7 +63,7 @@ class HttpClientTest extends TestCase
             ->shouldReceive('getReasonPhrase')
             ->andReturn('Invalid request');
 
-        $httpClient = new HttpClient($this->httpClient);
+        $httpClient = new HttpClient($this->httpClient, $this->requestFactory);
 
         $httpClient->sendRequest($this->request);
     }

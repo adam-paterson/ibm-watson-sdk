@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace IBM\Watson\Core\Client;
 
+use Http\Message\RequestFactory;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Http\Client\Common\HttpMethodsClient;
 use Http\Client\HttpClient as HttpClientInterface;
 
 /**
@@ -16,24 +18,20 @@ use Http\Client\HttpClient as HttpClientInterface;
  * @copyright 2018 Adam Paterson
  * @license   https://opensource.org/licenses/MIT  MIT License
  */
-class HttpClient implements HttpClientInterface
+class HttpClient extends HttpMethodsClient
 {
-    /**
-     * @var \Http\Client\HttpClient
-     */
-    private $httpClient;
-
     /**
      * @var \IBM\Watson\Core\Client\ExceptionHandler
      */
     private $exceptionHandler;
 
     /**
-     * @param \Http\Client\HttpClient $baseClient
+     * @param \Http\Client\HttpClient      $baseClient
+     * @param \Http\Message\RequestFactory $requestFactory
      */
-    public function __construct(HttpClientInterface $baseClient)
+    public function __construct(HttpClientInterface $baseClient, RequestFactory $requestFactory)
     {
-        $this->httpClient       = $baseClient;
+        parent::__construct($baseClient, $requestFactory);
         $this->exceptionHandler = new ExceptionHandler();
     }
 
@@ -47,7 +45,7 @@ class HttpClient implements HttpClientInterface
      */
     public function sendRequest(RequestInterface $request): ResponseInterface
     {
-        $response = $this->httpClient->sendRequest($request);
+        $response = parent::sendRequest($request);
 
         if (200 !== $response->getStatusCode()) {
             $this->exceptionHandler->handle($request, $response);

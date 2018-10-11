@@ -76,8 +76,8 @@ class ToneAnalysis implements CreatableFromArrayInterface
      * Gets the sentencesTone.
      *
      * An array of SentenceAnalysis objects that provides the results of the analysis for the individual sentences of
-     * the input content. The service returns results only for the first 100 sentences of the input. The field is omitted
-     * if the sentences parameter of the request is set to false.
+     * the input content. The service returns results only for the first 100 sentences of the input.
+     * The field is omitted if the sentences parameter of the request is set to false.
      *
      * @return array
      */

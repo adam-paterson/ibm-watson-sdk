@@ -28,9 +28,9 @@ class Tone extends AbstractApi
      * emotional and language tones. The method always analyzes the tone of the full document; by default, it also
      * analyzes the tone of each individual sentence of the content.
      *
-     * You can submit no more than 128 KB of total input content and no more than 1000 individual sentences in JSON, plain
-     * text, or HTML format. The service analyzes the first 1000 sentences for document-level analysis and only the first
-     * 100 sentences for sentence-level analysis.
+     * You can submit no more than 128 KB of total input content and no more than 1000 individual sentences in JSON,
+     * plain text, or HTML format. The service analyzes the first 1000 sentences for document-level analysis and only
+     * the first 100 sentences for sentence-level analysis.
      *
      * Per the JSON specification, the default character encoding for JSON content is effectively always UTF-8; per the
      * HTTP specification, the default encoding for plain text and HTML is ISO-8859-1 (effectively, the ASCII character

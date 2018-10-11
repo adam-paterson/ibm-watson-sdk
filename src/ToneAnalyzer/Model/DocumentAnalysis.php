@@ -62,8 +62,8 @@ class DocumentAnalysis implements CreatableFromArrayInterface
      * Gets the tones.
      *
      * An array of ToneScore objects that provides the results of the analysis for each qualifying
-     * tone of the document. The array includes results for any tone whose score is at least 0.5. The array is empty if no
-     * tone has a score that meets this threshold.
+     * tone of the document. The array includes results for any tone whose score is at least 0.5.
+     * The array is empty if no tone has a score that meets this threshold.
      *
      * @return array
      */
