@@ -2,22 +2,26 @@
 
 namespace IBM\Watson\Core\tests\Client\HttpClient;
 
-use Mockery as m;
+use Http\Client\Common\HttpMethodsClient;
 use Http\Client\HttpClient;
-use Http\Message\UriFactory;
-use PHPUnit\Framework\TestCase;
 use Http\Message\Authentication;
 use Http\Message\RequestFactory;
-use Psr\Http\Message\UriInterface;
-use Http\Client\Common\HttpMethodsClient;
+use Http\Message\UriFactory;
 use IBM\Watson\Core\Client\HttpClient\Builder;
+use Mockery as m;
+use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\UriInterface;
 
 class BuilderTest extends TestCase
 {
     private $httpClient;
+
     private $requestFactory;
+
     private $uriFactory;
+
     private $uri;
+
     private $authentication;
 
     public function setUp()

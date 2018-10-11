@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace IBM\Watson\Core;
 
-use Http\Message\Authentication;
 use Http\Client\Common\HttpMethodsClient;
+use Http\Message\Authentication;
 use IBM\Watson\Core\Hydrator\HydratorInterface;
 
 /**
@@ -25,8 +25,7 @@ interface ClientInterface
     public function __construct(HttpMethodsClient $httpClient);
 
     /**
-     * @param \Http\Message\Authentication $authentication
-     *
+     * @param \Http\Message\Authentication                     $authentication
      * @param \IBM\Watson\Core\Hydrator\HydratorInterface|null $hydrator
      *
      * @return mixed

@@ -2,15 +2,16 @@
 
 namespace IBM\Watson\Core\tests\Client;
 
+use IBM\Watson\Core\Client\ExceptionHandler;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use IBM\Watson\Core\Client\ExceptionHandler;
 
 class ExceptionHandlerTest extends TestCase
 {
     private $request;
+
     private $response;
 
     public function setUp()

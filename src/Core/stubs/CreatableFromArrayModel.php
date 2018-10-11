@@ -16,6 +16,7 @@ use IBM\Watson\Core\Model\CreatableFromArrayInterface;
 class CreatableFromArrayModel implements CreatableFromArrayInterface
 {
     private $param;
+
     private $param2;
 
     /**

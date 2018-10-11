@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace IBM\Watson\Core\Hydrator;
 
-use ReflectionClass;
-use Psr\Http\Message\ResponseInterface;
 use IBM\Watson\Core\Exception\HydrationException;
 use IBM\Watson\Core\Model\CreatableFromArrayInterface;
+use Psr\Http\Message\ResponseInterface;
+use ReflectionClass;
 
 /**
  * ModelHydrator will hydrate a response into a model.
@@ -23,6 +23,7 @@ final class ModelHydrator extends AbstractHydrator
      * @param string|null                         $class
      *
      * @return mixed
+     *
      * @throws \ReflectionException
      */
     public function hydrate(ResponseInterface $response, string $class = null)
@@ -57,6 +58,7 @@ final class ModelHydrator extends AbstractHydrator
      * @param string $class
      *
      * @return bool
+     *
      * @throws \ReflectionException
      */
     private function isCreatableFromArray(string $class): bool

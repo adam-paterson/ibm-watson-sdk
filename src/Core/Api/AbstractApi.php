@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace IBM\Watson\Core\Api;
 
-use Http\Message\UriFactory;
 use Http\Client\Common\HttpMethodsClient;
+use Http\Message\UriFactory;
 use IBM\Watson\Core\Hydrator\HydratorInterface;
 
 /**
@@ -17,19 +17,27 @@ use IBM\Watson\Core\Hydrator\HydratorInterface;
  */
 abstract class AbstractApi implements ApiInterface
 {
-    const HEADER_CONTENT_TYPE             = 'Content-Type';
-    const HEADER_CONTENT_LANGUAGE         = 'Content-Language';
-    const HEADER_ACCEPT_LANGUAGE          = 'Accept-Language';
-    const PARAM_CONTENT_TYPE              = 'content_type';
-    const PARAM_ACCEPT_LANGUAGE           = 'accept_language';
-    const PARAM_CONTENT_LANGUAGE          = 'content_language';
+    const HEADER_CONTENT_TYPE = 'Content-Type';
+
+    const HEADER_CONTENT_LANGUAGE = 'Content-Language';
+
+    const HEADER_ACCEPT_LANGUAGE = 'Accept-Language';
+
+    const PARAM_CONTENT_TYPE = 'content_type';
+
+    const PARAM_ACCEPT_LANGUAGE = 'accept_language';
+
+    const PARAM_CONTENT_LANGUAGE = 'content_language';
+
     const DEFAULT_HEADER_CONTENT_LANGUAGE = 'en';
-    const DEFAULT_HEADER_ACCEPT_LANGUAGE  = 'en';
+
+    const DEFAULT_HEADER_ACCEPT_LANGUAGE = 'en';
 
     /**
      * @var \IBM\Watson\Core\Hydrator\HydratorInterface
      */
     protected $hydrator;
+
     /**
      * @var \Http\Client\Common\HttpMethodsClient
      */
@@ -85,7 +93,7 @@ abstract class AbstractApi implements ApiInterface
 
         return [
             static::HEADER_CONTENT_LANGUAGE => $contentLang,
-            static::HEADER_ACCEPT_LANGUAGE  => $acceptLang
+            static::HEADER_ACCEPT_LANGUAGE  => $acceptLang,
         ];
     }
 }

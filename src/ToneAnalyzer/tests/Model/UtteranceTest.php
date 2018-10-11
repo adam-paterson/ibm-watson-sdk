@@ -2,8 +2,8 @@
 
 namespace IBM\Watson\ToneAnalyzer\tests\Model;
 
-use PHPUnit\Framework\TestCase;
 use IBM\Watson\ToneAnalyzer\Model\Utterance;
+use PHPUnit\Framework\TestCase;
 
 class UtteranceTest extends TestCase
 {

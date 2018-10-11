@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace IBM\Watson\ToneAnalyzer;
 
-use Http\Message\UriFactory;
-use Http\Message\Authentication;
-use Http\Discovery\UriFactoryDiscovery;
 use Http\Client\Common\HttpMethodsClient;
-use IBM\Watson\Core\Hydrator\ModelHydrator;
+use Http\Discovery\UriFactoryDiscovery;
+use Http\Message\Authentication;
+use Http\Message\UriFactory;
 use IBM\Watson\Core\Client\HttpClient\Builder;
 use IBM\Watson\Core\Hydrator\HydratorInterface;
+use IBM\Watson\Core\Hydrator\ModelHydrator;
 
 /**
- * Tone Analyzer Client
+ * Tone Analyzer Client.
  *
  * @author    Adam Paterson <hello@adampaterson.co.uk>
  * @copyright 2018 Adam Paterson
@@ -58,7 +58,7 @@ class Client
      *
      * @return \IBM\Watson\ToneAnalyzer\Client
      */
-    public static function create(Authentication $authentication): Client
+    public static function create(Authentication $authentication): self
     {
         $httpClient = (new Builder())
             ->withHost('https://gateway.watsonplatform.net')

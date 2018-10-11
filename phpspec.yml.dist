@@ -11,5 +11,11 @@ suites:
         src_path: src/ToneAnalyzer
         spec_path: src/ToneAnalyzer
         composer_suite_detection: true
+    LanguageTranslator:
+        namespace: IBM\Watson\LanguageTranslator
+        psr4_prefix: IBM\Watson\LanguageTranslator
+        src_path: src/LanguageTranslator
+        spec_path: src/LanguageTranslator
+        composer_suite_detection: true
 
 formatter.name: pretty

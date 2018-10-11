@@ -2,10 +2,10 @@
 
 namespace IBM\Watson\ToneAnalyzer\tests\Model;
 
-use PHPUnit\Framework\TestCase;
-use PHPUnit\Framework\Constraint\IsType;
 use IBM\Watson\ToneAnalyzer\Model\ToneScore;
 use IBM\Watson\ToneAnalyzer\Model\UtteranceAnalysis;
+use PHPUnit\Framework\Constraint\IsType;
+use PHPUnit\Framework\TestCase;
 
 class UtteranceAnalysisTest extends TestCase
 {
@@ -42,10 +42,10 @@ class UtteranceAnalysisTest extends TestCase
                 [
                     ToneScore::KEY_ID    => 'sad',
                     ToneScore::KEY_NAME  => 'Sad',
-                    ToneScore::KEY_SCORE => 0.456
-                ]
+                    ToneScore::KEY_SCORE => 0.456,
+                ],
             ],
-            UtteranceAnalysis::KEY_ERROR => 'error'
+            UtteranceAnalysis::KEY_ERROR => 'error',
         ];
 
         $analysis = UtteranceAnalysis::create($data);

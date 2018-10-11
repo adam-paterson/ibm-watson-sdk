@@ -15,7 +15,8 @@ use IBM\Watson\Core\Model\CreatableFromArrayInterface;
  */
 class DocumentAnalysis implements CreatableFromArrayInterface
 {
-    const KEY_TONES   = 'tones';
+    const KEY_TONES = 'tones';
+
     const KEY_WARNING = 'warning';
 
     /**

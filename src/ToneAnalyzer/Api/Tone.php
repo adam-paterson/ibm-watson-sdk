@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace IBM\Watson\ToneAnalyzer\Api;
 
 use IBM\Watson\Core\Api\AbstractApi;
-use IBM\Watson\ToneAnalyzer\Model\ToneAnalysis;
 use IBM\Watson\ToneAnalyzer\Model\DocumentAnalysis;
+use IBM\Watson\ToneAnalyzer\Model\ToneAnalysis;
 
 /**
  * API class to consume the general tone API endpoint.
@@ -17,9 +17,11 @@ use IBM\Watson\ToneAnalyzer\Model\DocumentAnalysis;
  */
 class Tone extends AbstractApi
 {
-    const API_URI_TONE           = 'v3/tone';
-    const PARAM_SENTENCES        = 'sentences';
-    const PARAM_TEXT             = 'text';
+    const API_URI_TONE = 'v3/tone';
+
+    const PARAM_SENTENCES = 'sentences';
+
+    const PARAM_TEXT = 'text';
 
     /**
      * Analyze general tone.
@@ -43,6 +45,7 @@ class Tone extends AbstractApi
      * @param array  $parameters
      *
      * @return DocumentAnalysis|array
+     *
      * @throws \Http\Client\Exception
      */
     public function analyze(string $text, bool $sentences = true, array $parameters = [])
@@ -50,10 +53,10 @@ class Tone extends AbstractApi
         $parameters = $this->validateParameters($parameters);
 
         $queryParams = [
-            self::PARAM_SENTENCES   => $sentences,
+            self::PARAM_SENTENCES => $sentences,
         ];
 
-        $uri = $this->uriFactory->createUri(static::API_URI_TONE .'?' . http_build_query($queryParams));
+        $uri = $this->uriFactory->createUri(static::API_URI_TONE.'?'.http_build_query($queryParams));
 
         $headers = $this->getHeaders($parameters);
 

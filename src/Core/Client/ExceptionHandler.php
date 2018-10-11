@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace IBM\Watson\Core\Client;
 
+use Http\Client\Exception\HttpException;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use Http\Client\Exception\HttpException;
 
 /**
  * Throws exception based on the response's HTTP status code.

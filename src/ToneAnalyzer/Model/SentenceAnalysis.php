@@ -15,8 +15,10 @@ use IBM\Watson\Core\Model\CreatableFromArrayInterface;
  */
 class SentenceAnalysis implements CreatableFromArrayInterface
 {
-    const KEY_ID    = 'sentence_id';
-    const KEY_TEXT  = 'text';
+    const KEY_ID = 'sentence_id';
+
+    const KEY_TEXT = 'text';
+
     const KEY_TONES = 'tones';
 
     /**

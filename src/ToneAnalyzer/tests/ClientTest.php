@@ -2,19 +2,21 @@
 
 namespace IBM\Watson\ToneAnalyzer\tests\Client;
 
-use Mockery as m;
 use Http\Client\HttpClient;
-use PHPUnit\Framework\TestCase;
 use Http\Message\Authentication;
-use IBM\Watson\ToneAnalyzer\Client;
+use IBM\Watson\Core\Hydrator\HydratorInterface;
 use IBM\Watson\ToneAnalyzer\Api\Tone;
 use IBM\Watson\ToneAnalyzer\Api\ToneChat;
-use IBM\Watson\Core\Hydrator\HydratorInterface;
+use IBM\Watson\ToneAnalyzer\Client;
+use Mockery as m;
+use PHPUnit\Framework\TestCase;
 
 class ClientTest extends TestCase
 {
     private $httpClient;
+
     private $hydrator;
+
     private $authentication;
 
     public function setUp()
