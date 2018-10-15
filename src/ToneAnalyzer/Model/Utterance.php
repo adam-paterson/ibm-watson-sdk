@@ -7,7 +7,7 @@ namespace IBM\Watson\ToneAnalyzer\Model;
 use IBM\Watson\Core\Model\CreatableFromArrayInterface;
 
 /**
- * Class
+ * Class.
  *
  * @author    Adam Paterson <hello@adampaterson.co.uk>
  * @copyright 2018 Adam Paterson
@@ -16,6 +16,7 @@ use IBM\Watson\Core\Model\CreatableFromArrayInterface;
 class Utterance implements CreatableFromArrayInterface
 {
     const KEY_TEXT = 'text';
+
     const KEY_USER = 'user';
 
     /**

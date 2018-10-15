@@ -16,7 +16,8 @@ use IBM\Watson\Core\Model\CreatableFromArrayInterface;
 class UtteranceAnalyses implements CreatableFromArrayInterface
 {
     const KEY_UTTERANCES_TONES = 'utterances_tone';
-    const KEY_WARNING          = 'warning';
+
+    const KEY_WARNING = 'warning';
 
     /**
      * @var array

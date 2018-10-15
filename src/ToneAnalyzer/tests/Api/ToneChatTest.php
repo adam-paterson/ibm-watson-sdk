@@ -2,22 +2,26 @@
 
 namespace IBM\Watson\ToneAnalyzer\tests\Api;
 
-use Mockery as m;
+use Http\Client\Common\HttpMethodsClient;
 use Http\Message\UriFactory;
+use IBM\Watson\Core\Hydrator\HydratorInterface;
+use IBM\Watson\ToneAnalyzer\Api\ToneChat;
+use Mockery as m;
+use PHPUnit\Framework\Constraint\IsType;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use PHPUnit\Framework\Constraint\IsType;
-use Http\Client\Common\HttpMethodsClient;
-use IBM\Watson\ToneAnalyzer\Api\ToneChat;
-use IBM\Watson\Core\Hydrator\HydratorInterface;
 
 class ToneChatTest extends TestCase
 {
     private $httpClient;
+
     private $hydrator;
+
     private $uriFactory;
+
     private $request;
+
     private $response;
 
     public function setUp()
@@ -35,7 +39,7 @@ class ToneChatTest extends TestCase
 
         $this->assertSame([
             ToneChat::PARAM_ACCEPT_LANGUAGE,
-            ToneChat::PARAM_CONTENT_LANGUAGE
+            ToneChat::PARAM_CONTENT_LANGUAGE,
         ], $toneChat->getAllowedParameters());
     }
 
@@ -54,8 +58,8 @@ class ToneChatTest extends TestCase
         $utterances = [
             [
                 'text' => 'text',
-                'user' => 'customer'
-            ]
+                'user' => 'customer',
+            ],
         ];
 
         $response = $api->analyze($utterances);

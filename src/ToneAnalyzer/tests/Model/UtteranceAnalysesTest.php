@@ -2,9 +2,9 @@
 
 namespace IBM\Watson\ToneAnalyzer\tests\Model;
 
-use PHPUnit\Framework\TestCase;
-use PHPUnit\Framework\Constraint\IsType;
 use IBM\Watson\ToneAnalyzer\Model\UtteranceAnalyses;
+use PHPUnit\Framework\Constraint\IsType;
+use PHPUnit\Framework\TestCase;
 
 class UtteranceAnalysesTest extends TestCase
 {
@@ -12,7 +12,7 @@ class UtteranceAnalysesTest extends TestCase
     {
         $analysis = UtteranceAnalyses::create([
             UtteranceAnalyses::KEY_UTTERANCES_TONES => [],
-            UtteranceAnalyses::KEY_WARNING          => 'warning'
+            UtteranceAnalyses::KEY_WARNING          => 'warning',
         ]);
 
         $this->assertInstanceOf(UtteranceAnalyses::class, $analysis);

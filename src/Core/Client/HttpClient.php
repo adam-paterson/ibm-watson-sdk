@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace IBM\Watson\Core\Client;
 
+use Http\Client\Common\HttpMethodsClient;
+use Http\Client\HttpClient as HttpClientInterface;
 use Http\Message\RequestFactory;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use Http\Client\Common\HttpMethodsClient;
-use Http\Client\HttpClient as HttpClientInterface;
 
 /**
  * HTTP Client to send a PSR-7 compliant request, wraps an ExceptionHandler client to throw
@@ -41,6 +41,7 @@ class HttpClient extends HttpMethodsClient
      * @param \Psr\Http\Message\RequestInterface $request Request to send.
      *
      * @return \Psr\Http\Message\ResponseInterface Response from API.
+     *
      * @throws \Http\Client\Exception
      */
     public function sendRequest(RequestInterface $request): ResponseInterface

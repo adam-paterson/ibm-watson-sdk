@@ -16,6 +16,7 @@ use IBM\Watson\Core\Model\CreatableFromArrayInterface;
 class ToneAnalysis implements CreatableFromArrayInterface
 {
     const KEY_DOCUMENT_ANALYSIS = 'document_tone';
+
     const KEY_SENTENCE_ANALYSIS = 'sentences_tone';
 
     /**

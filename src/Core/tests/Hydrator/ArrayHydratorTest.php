@@ -2,16 +2,17 @@
 
 namespace IBM\Watson\Core\tests\Client;
 
-use Mockery as m;
-use PHPUnit\Framework\TestCase;
-use Psr\Http\Message\StreamInterface;
-use Psr\Http\Message\ResponseInterface;
-use PHPUnit\Framework\Constraint\IsType;
 use IBM\Watson\Core\Hydrator\ArrayHydrator;
+use Mockery as m;
+use PHPUnit\Framework\Constraint\IsType;
+use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\StreamInterface;
 
 class ArrayHydratorTest extends TestCase
 {
     private $response;
+
     private $body;
 
     public function setUp()

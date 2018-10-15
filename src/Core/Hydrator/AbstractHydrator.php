@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace IBM\Watson\Core\Hydrator;
 
-use Psr\Http\Message\ResponseInterface;
 use IBM\Watson\Core\Exception\HydrationException;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * Base Hydrator class containing common methods used in other hydrators.

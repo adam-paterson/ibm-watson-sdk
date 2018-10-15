@@ -7,7 +7,7 @@ namespace IBM\Watson\ToneAnalyzer\Model;
 use IBM\Watson\Core\Model\CreatableFromArrayInterface;
 
 /**
- * ToneScore
+ * ToneScore.
  *
  * @author    Adam Paterson <hello@adampaterson.co.uk>
  * @copyright 2018 Adam Paterson
@@ -15,8 +15,10 @@ use IBM\Watson\Core\Model\CreatableFromArrayInterface;
  */
 class ToneScore implements CreatableFromArrayInterface
 {
-    const KEY_ID    = 'tone_id';
-    const KEY_NAME  = 'tone_name';
+    const KEY_ID = 'tone_id';
+
+    const KEY_NAME = 'tone_name';
+
     const KEY_SCORE = 'score';
 
     /**

@@ -2,9 +2,9 @@
 
 namespace IBM\Watson\ToneAnalyzer\tests\Model;
 
-use PHPUnit\Framework\TestCase;
-use PHPUnit\Framework\Constraint\IsType;
 use IBM\Watson\ToneAnalyzer\Model\SentenceAnalysis;
+use PHPUnit\Framework\Constraint\IsType;
+use PHPUnit\Framework\TestCase;
 
 class SentenceAnalysisTest extends TestCase
 {
@@ -13,7 +13,7 @@ class SentenceAnalysisTest extends TestCase
         $analysis = SentenceAnalysis::create([
             SentenceAnalysis::KEY_ID    => 0,
             SentenceAnalysis::KEY_TEXT  => 'some text',
-            SentenceAnalysis::KEY_TONES => []
+            SentenceAnalysis::KEY_TONES => [],
         ]);
 
         $this->assertInstanceOf(SentenceAnalysis::class, $analysis);

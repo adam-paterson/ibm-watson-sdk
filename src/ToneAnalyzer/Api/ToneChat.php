@@ -17,7 +17,8 @@ use IBM\Watson\ToneAnalyzer\Model\UtteranceAnalyses;
 class ToneChat extends AbstractApi
 {
     const API_URI_TONE_CHAT = 'v3/tone_chat';
-    const PARAM_UTTERANCES  = 'utterances';
+
+    const PARAM_UTTERANCES = 'utterances';
 
     /**
      * @return array
@@ -26,7 +27,7 @@ class ToneChat extends AbstractApi
     {
         return [
             static::PARAM_ACCEPT_LANGUAGE,
-            static::PARAM_CONTENT_LANGUAGE
+            static::PARAM_CONTENT_LANGUAGE,
         ];
     }
 
@@ -43,12 +44,13 @@ class ToneChat extends AbstractApi
      * have more than 500 characters.
      *
      * Per the JSON specification, the default character encoding for JSON content is effectively always UTF-8.
- *
+     *
 
      * @param array $utterances
      * @param array $parameters
      *
      * @return mixed
+     *
      * @throws \Http\Client\Exception
      */
     public function analyze(array $utterances, array $parameters = [])

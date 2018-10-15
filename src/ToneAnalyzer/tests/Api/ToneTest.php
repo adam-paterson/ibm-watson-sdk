@@ -2,20 +2,23 @@
 
 namespace IBM\Watson\ToneAnalyzer\tests\Api;
 
-use Mockery as m;
-use Http\Message\UriFactory;
-use PHPUnit\Framework\TestCase;
-use IBM\Watson\ToneAnalyzer\Api\Tone;
-use Psr\Http\Message\ResponseInterface;
-use PHPUnit\Framework\Constraint\IsType;
 use Http\Client\Common\HttpMethodsClient;
+use Http\Message\UriFactory;
 use IBM\Watson\Core\Hydrator\HydratorInterface;
+use IBM\Watson\ToneAnalyzer\Api\Tone;
+use Mockery as m;
+use PHPUnit\Framework\Constraint\IsType;
+use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\ResponseInterface;
 
 class ToneTest extends TestCase
 {
     private $httpClient;
+
     private $hydrator;
+
     private $uriFactory;
+
     private $response;
 
     public function setUp()
@@ -54,7 +57,7 @@ class ToneTest extends TestCase
         $this->assertSame([
             'content_type',
             'content_language',
-            'accept_language'
+            'accept_language',
         ], $api->getAllowedParameters());
     }
 }

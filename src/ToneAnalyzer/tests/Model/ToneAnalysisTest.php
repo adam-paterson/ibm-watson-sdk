@@ -2,12 +2,12 @@
 
 namespace IBM\Watson\ToneAnalyzer\tests\Model;
 
-use Mockery as m;
-use PHPUnit\Framework\TestCase;
-use PHPUnit\Framework\Constraint\IsType;
-use IBM\Watson\ToneAnalyzer\Model\ToneAnalysis;
 use IBM\Watson\ToneAnalyzer\Model\DocumentAnalysis;
 use IBM\Watson\ToneAnalyzer\Model\SentenceAnalysis;
+use IBM\Watson\ToneAnalyzer\Model\ToneAnalysis;
+use Mockery as m;
+use PHPUnit\Framework\Constraint\IsType;
+use PHPUnit\Framework\TestCase;
 
 class ToneAnalysisTest extends TestCase
 {
@@ -28,9 +28,9 @@ class ToneAnalysisTest extends TestCase
                 [
                     SentenceAnalysis::KEY_ID    => 0,
                     SentenceAnalysis::KEY_TEXT  => 'text',
-                    SentenceAnalysis::KEY_TONES => []
-                ]
-            ]
+                    SentenceAnalysis::KEY_TONES => [],
+                ],
+            ],
         ];
 
         $analysis = ToneAnalysis::create($data);

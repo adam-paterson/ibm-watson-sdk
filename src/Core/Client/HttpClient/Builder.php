@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace IBM\Watson\Core\Client\HttpClient;
 
-use Http\Client\HttpClient;
-use Http\Message\UriFactory;
-use Http\Message\Authentication;
-use Http\Message\RequestFactory;
-use Http\Client\Common\PluginClient;
-use Http\Discovery\HttpClientDiscovery;
-use Http\Discovery\UriFactoryDiscovery;
-use Http\Discovery\MessageFactoryDiscovery;
 use Http\Client\Common\Plugin\AddHostPlugin;
 use Http\Client\Common\Plugin\AddPathPlugin;
-use Http\Client\Common\Plugin\QueryDefaultsPlugin;
 use Http\Client\Common\Plugin\AuthenticationPlugin;
 use Http\Client\Common\Plugin\HeaderDefaultsPlugin;
+use Http\Client\Common\Plugin\QueryDefaultsPlugin;
+use Http\Client\Common\PluginClient;
+use Http\Client\HttpClient;
+use Http\Discovery\HttpClientDiscovery;
+use Http\Discovery\MessageFactoryDiscovery;
+use Http\Discovery\UriFactoryDiscovery;
+use Http\Message\Authentication;
+use Http\Message\RequestFactory;
+use Http\Message\UriFactory;
 use IBM\Watson\Core\Client\HttpClient as HttpMethodsClient;
 
 /**
@@ -240,7 +240,7 @@ class Builder
 
         if (null !== $this->version) {
             $plugins[] = new QueryDefaultsPlugin([
-                'version' => $this->version
+                'version' => $this->version,
             ]);
         }
 

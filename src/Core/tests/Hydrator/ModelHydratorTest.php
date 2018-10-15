@@ -2,20 +2,24 @@
 
 namespace IBM\Watson\Core\tests\Client;
 
-use Mockery as m;
-use PHPUnit\Framework\TestCase;
-use Psr\Http\Message\StreamInterface;
-use Psr\Http\Message\ResponseInterface;
-use IBM\Watson\Core\Model\ModelInterface;
 use IBM\Watson\Core\Hydrator\ModelHydrator;
 use IBM\Watson\Core\Model\CreatableFromArrayInterface;
+use IBM\Watson\Core\Model\ModelInterface;
+use Mockery as m;
+use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\StreamInterface;
 
 class ModelHydratorTest extends TestCase
 {
     private $response;
+
     private $body;
+
     private $stream;
+
     private $constructorModel;
+
     private $creatableModel;
 
     public function setUp()

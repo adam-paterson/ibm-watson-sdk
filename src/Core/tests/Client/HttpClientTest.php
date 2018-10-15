@@ -2,19 +2,22 @@
 
 namespace IBM\Watson\Core\tests\Client;
 
-use Mockery as m;
-use PHPUnit\Framework\TestCase;
+use Http\Client\HttpClient as HttpClientInterface;
 use Http\Message\RequestFactory;
 use IBM\Watson\Core\Client\HttpClient;
+use Mockery as m;
+use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use Http\Client\HttpClient as HttpClientInterface;
 
 class HttpClientTest extends TestCase
 {
     private $httpClient;
+
     private $request;
+
     private $response;
+
     private $requestFactory;
 
     public function setUp()
