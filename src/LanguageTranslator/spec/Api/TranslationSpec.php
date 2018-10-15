@@ -28,9 +28,9 @@ class TranslationSpec extends ObjectBehavior
     function it_translates_provided_text(
         HttpMethodsClient $httpClient,
         HydratorInterface $hydrator,
-        ResponseInterface $response,
-        TranslationResult $result
+        ResponseInterface $response
     ) {
+        $result = new TranslationResult(34, 45, []);
         $httpClient
             ->post('v3/translate', [], '{"text":"some text","model_id":"en-nl"}')
             ->willReturn($response);

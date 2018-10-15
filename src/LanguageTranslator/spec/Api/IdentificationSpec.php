@@ -30,9 +30,9 @@ class IdentificationSpec extends ObjectBehavior
     function it_lists_available_languages(
         HttpMethodsClient $httpClient,
         HydratorInterface $hydrator,
-        ResponseInterface $response,
-        IdentifiableLanguages $identifiableLanguages
+        ResponseInterface $response
     ) {
+        $identifiableLanguages = new IdentifiableLanguages([]);
         $httpClient
             ->get('v3/identifiable_languages')
             ->willReturn($response);
@@ -47,9 +47,9 @@ class IdentificationSpec extends ObjectBehavior
     function it_identifies_language_of_provided_text(
         HttpMethodsClient $httpClient,
         HydratorInterface $hydrator,
-        ResponseInterface $response,
-        IdentifiedLanguages $identifiedLanguages
+        ResponseInterface $response
     ) {
+        $identifiedLanguages = new IdentifiedLanguages([]);
         $httpClient
             ->post('v3/identify', [], 'some text')
             ->willReturn($response);

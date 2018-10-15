@@ -17,6 +17,7 @@ class TranslationTest extends TestCase
     private $hydrator;
     private $uriFactory;
     private $response;
+    private $result;
 
     public function setUp()
     {
@@ -24,6 +25,7 @@ class TranslationTest extends TestCase
         $this->hydrator   = m::mock(HydratorInterface::class);
         $this->uriFactory = m::mock(UriFactory::class);
         $this->response   = m::mock(ResponseInterface::class);
+        $this->result     = new TranslationResult(35, 23, []);
     }
 
     public function testTranslate()
@@ -34,7 +36,7 @@ class TranslationTest extends TestCase
 
         $this->hydrator
             ->shouldReceive('hydrate')
-            ->andReturn(m::mock(TranslationResult::class));
+            ->andReturn($this->result);
 
         $api = new Translation($this->httpClient, $this->hydrator, $this->uriFactory);
 
@@ -59,7 +61,7 @@ class TranslationTest extends TestCase
 
         $this->hydrator
             ->shouldReceive('hydrate')
-            ->andReturn(m::mock(TranslationResult::class));
+            ->andReturn($this->result);
 
         $api = new Translation($this->httpClient, $this->hydrator, $this->uriFactory);
 
